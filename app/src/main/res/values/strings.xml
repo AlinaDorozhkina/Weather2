@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">WeatherApp</string>
+    <string name="choose_city">Выберите город</string>
+    <string name="show_button">Показать</string>
+    <string name="enter_city">Введите город</string>
+    <string name="pop_city">Избранное</string>
+    <string name="window_speed_checkbox">Скорость ветра</string>
+    <string name="air_pressure">Давление</string>
+    <string name="atmospheric_moisture">Влажность</string>
+    <string name="extras">Хотите узнать?</string>
+    <string name="info">Прогноз погоды</string>
+    <string name="city">Город</string>
+    <string name="temperature">Температура</string>
+    <string name="image">Иконка</string>
+    <string name="degree">Градусы</string>
+    <string name="valueWind">Значение</string>
+    <string name="valuePressure">Значение</string>
+    <string name="valueMoisture">Значение</string>
+    <string name="addingToFavourite">Добавить</string>
+    <string name="weather_description">Ясно</string>
+    <string name="web_weather">https://weather.com/</string>
+    <string name="web_open_button">Перейти</string>
+    <string name="hint_choose_city">Выберите город</string>
+</resources>
