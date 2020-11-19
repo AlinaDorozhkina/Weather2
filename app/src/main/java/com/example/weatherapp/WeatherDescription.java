@@ -1,11 +1,16 @@
 package com.example.weatherapp;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -14,6 +19,8 @@ import android.widget.TextView;
 
 public class WeatherDescription extends AppCompatActivity {
     private static final String TAG = WeatherDescription.class.getSimpleName();
+    private final String CITY="city";
+    private final String TEMPERATURE = "temp";
     private TextView textViewTemperature;
     private TextView textViewCity;
     private ImageButton favourites_button;
@@ -57,6 +64,7 @@ public class WeatherDescription extends AppCompatActivity {
             fragment.setArguments(bundle);
             transaction.commit();
         }
+        initDataSource();
     }
 
     private String showRandomValue() {
@@ -72,6 +80,25 @@ public class WeatherDescription extends AppCompatActivity {
             flag = false;
         }
     }
+    private void initDataSource(){
+        String [] data = getResources().getStringArray(R.array.week);
+        initRecycleView(data);
+
+    }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString(CITY, textViewCity.getText().toString());
+        outState.putString(TEMPERATURE, textViewTemperature.getText().toString());
+    }
+
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        textViewCity.setText(savedInstanceState.getString(CITY));
+        textViewTemperature.setText(savedInstanceState.getString(TEMPERATURE));
+    }
 
     @Override
     public void onBackPressed() {
@@ -83,5 +110,20 @@ public class WeatherDescription extends AppCompatActivity {
             finish();
         }
         super.onBackPressed();
+    }
+
+    private WeekTempAdapter initRecycleView(String [] data_source){
+        RecyclerView recyclerView=findViewById(R.id.recycleView_for_week_weather);
+        recyclerView.setHasFixedSize(true);
+        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false);
+        recyclerView.setLayoutManager(linearLayoutManager);
+        WeekTempAdapter weekTempAdapter =new WeekTempAdapter(data_source);
+        DividerItemDecoration itemDecoration = new DividerItemDecoration(this,  LinearLayoutManager.VERTICAL);
+        itemDecoration.setDrawable(getDrawable(R.drawable.separator));
+        recyclerView.addItemDecoration(itemDecoration);
+
+        recyclerView.setAdapter(weekTempAdapter);
+        return weekTempAdapter;
+
     }
 }

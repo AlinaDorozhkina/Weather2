@@ -43,6 +43,7 @@ public class ExtraDataFragment extends Fragment {
                 textViewMoistureValue.setText(setDataParameter());
             }
         }
+        setRetainInstance(true);
     }
 
     private String setDataParameter() {

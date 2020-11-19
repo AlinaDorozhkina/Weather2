@@ -11,15 +11,19 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class FavouritesCityFragment extends Fragment {
     private static final String TAG = FavouritesCityFragment.class.getSimpleName();
     private View layout;
+    private  View view;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_favourites_city, container, false);
+        view =inflater.inflate(R.layout.fragment_favourites_city, container, false);
+        return view;
     }
 
     @Override
@@ -28,12 +32,21 @@ public class FavouritesCityFragment extends Fragment {
         layout = view;
     }
 
-    public void createViewForFavouriteCity(String name) {
+    public FavouritesAdapter createViewForFavouriteCity(String name) {
         Log.d(TAG, " получено значение " + name);
-        TextView textView = new TextView(getContext());
-        textView.setText(name);
-        textView.setTextSize(40);
-        LinearLayout layoutView =layout.findViewById(R.id.liner_for_favourites);
-        layoutView.addView(textView);
+
+        RecyclerView recyclerView=view.findViewById(R.id.recycleView_for_favourites);
+        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
+        recyclerView.setLayoutManager(linearLayoutManager);
+        FavouritesAdapter favouritesAdapter =new FavouritesAdapter(name);
+        recyclerView.setAdapter(favouritesAdapter);
+
+        return favouritesAdapter;
+
     }
+
+
+
+
+
 }

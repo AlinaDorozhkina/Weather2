@@ -1,23 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/liner_for_favourites"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
     android:background="@drawable/bluedark">
-    <TextView
-        android:id="@+id/textViewPopularCities"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/alice"
-        android:text="@string/pop_city"
-        android:layout_gravity="center"
-        android:textColor="@color/yellow"
-        android:layout_margin="@dimen/common_margin"
-        android:textSize="@dimen/text_size_average">
 
+    <TextView
+        android:id="@+id/textView_favourite_city"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:fontFamily="@font/alice"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_size_average">
     </TextView>
 
 </LinearLayout>

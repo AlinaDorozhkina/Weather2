@@ -32,6 +32,12 @@
         android:layout_height="wrap_content"
         tools:layout="@layout/fragment_favourites_city">
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycleView_for_favourites"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </androidx.recyclerview.widget.RecyclerView>
+
     </fragment>
 
 
