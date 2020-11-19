@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:baselineAligned="false">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_weight="1"
+        android:background="@drawable/backforactivity">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            tools:context=".WeatherDescription">
+
+            <TextView
+                android:id="@+id/textViewCity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/common_margin"
+                android:fontFamily="@font/alice"
+                android:gravity="end"
+                android:textStyle="bold"
+                android:layout_weight="1"
+                android:text="@string/city"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_big">
+
+            </TextView>
+
+            <ImageButton
+                android:id="@+id/favourites_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/common_margin_small"
+                android:layout_weight="1"
+                android:background="#00ffffff"
+                android:onClick="addToFavourites"
+                android:contentDescription="@string/addingToFavourite"
+                app:srcCompat="@android:drawable/btn_star_big_off" />
+
+
+        </LinearLayout>
+        <TableLayout
+            android:id="@+id/tableLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/textViewTemperature"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size_big" />
+
+                <ImageView
+                    android:id="@+id/imageViewWeatherGraphic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:contentDescription="@string/image"
+                    app:srcCompat="@drawable/sunicon"
+                    tools:srcCompat="@drawable/sunicon"
+                    tools:visibility="visible" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/textViewDescription"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:text="@string/weather_description"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/alice"
+                    android:textSize="@dimen/text_size_average" />
+
+            </TableRow>
+
+        </TableLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="@dimen/common_margin_small"
+            >
+
+
+            <TextView
+                android:id="@+id/textWebSite"
+                android:layout_width="wrap_content"
+                android:layout_weight="1.5"
+                android:gravity="center_horizontal"
+                android:layout_gravity="center"
+                android:textSize="@dimen/text_size_small"
+                android:fontFamily="@font/alice"
+                android:layout_height="wrap_content"
+                android:text="@string/web_weather"
+                android:textColor="@color/white"
+                android:textStyle="bold"/>
+
+            <Button
+                android:id="@+id/buttonWebSearch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="0.5"
+                android:backgroundTint="@color/blues"
+                android:fontFamily="@font/alice"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:text="@string/web_open_button"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_super_small" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_weight="1"
+        android:background="@drawable/backforactivity">
+
+        <FrameLayout
+            android:id="@+id/frame_for_extra_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+        </FrameLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>

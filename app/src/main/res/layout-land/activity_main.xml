@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+    tools:context=".MainActivity"
+    android:baselineAligned="false"
+    android:background="@drawable/bluedark">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical">
+        <fragment
+            android:id="@+id/fragment_favourites_city"
+            android:name="com.example.weatherapp.MainFunctionsFragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:layout="@layout/fragment_main_functions">
+
+        </fragment>
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_weight="1">
+        <fragment
+            android:id="@+id/fragment_for_favorites"
+            android:name="com.example.weatherapp.FavouritesCityFragment"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            tools:layout="@layout/fragment_favourites_city">
+
+        </fragment>
+
+    </LinearLayout>
+
+</LinearLayout>

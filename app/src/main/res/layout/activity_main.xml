@@ -24,13 +24,13 @@
         >
 
     </fragment>
+
     <fragment
         android:id="@+id/fragment_for_favorites"
         android:name="com.example.weatherapp.FavouritesCityFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:layout="@layout/fragment_favourites_city"
-        >
+        tools:layout="@layout/fragment_favourites_city">
 
     </fragment>
 
