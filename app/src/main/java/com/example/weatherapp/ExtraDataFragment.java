@@ -22,36 +22,31 @@ public class ExtraDataFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view= inflater.inflate(R.layout.fragment_extra_data, container, false);
-        textViewPressureValue=view.findViewById(R.id.textViewPressureValue);
-        textViewWindSpeedValue=view.findViewById(R.id.textViewWindSpeedValue);
-        textViewMoistureValue=view.findViewById(R.id.textViewMoistureValue);
+        View view = inflater.inflate(R.layout.fragment_extra_data, container, false);
+        textViewPressureValue = view.findViewById(R.id.textViewPressureValue);
+        textViewWindSpeedValue = view.findViewById(R.id.textViewWindSpeedValue);
+        textViewMoistureValue = view.findViewById(R.id.textViewMoistureValue);
         return view;
-
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         if (getArguments() != null) {
-            if (getArguments().getBoolean(Keys.PRESSURE)){
+            if (getArguments().getBoolean(Keys.PRESSURE)) {
                 textViewPressureValue.setText(setDataParameter());
             }
-            if (getArguments().getBoolean(Keys.WIND_SPEED)){
+            if (getArguments().getBoolean(Keys.WIND_SPEED)) {
                 textViewWindSpeedValue.setText(setDataParameter());
             }
-            if (getArguments().getBoolean(Keys.MOISTURE)){
+            if (getArguments().getBoolean(Keys.MOISTURE)) {
                 textViewMoistureValue.setText(setDataParameter());
             }
         }
-
     }
 
-    private String setDataParameter (){
+    private String setDataParameter() {
         return String.valueOf((int) (Math.random() * 30));
-
     }
-
-
 }
 

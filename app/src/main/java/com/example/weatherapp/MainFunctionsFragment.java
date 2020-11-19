@@ -22,7 +22,6 @@ import android.widget.Toast;
 public class MainFunctionsFragment extends Fragment {
     private final static String TAG = MainFunctionsFragment.class.getSimpleName();
     private static final int REQUEST_CODE = 1;
-
     private CheckBox pressure;
     private CheckBox speed;
     private CheckBox moisture;
@@ -31,10 +30,10 @@ public class MainFunctionsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View layout = inflater.inflate(R.layout.fragment_main_functions, container, false);
-        pressure= layout.findViewById(R.id.pressure);
+        pressure = layout.findViewById(R.id.pressure);
         speed = layout.findViewById(R.id.speed);
-        moisture= layout.findViewById(R.id.moisture);
-        autoCompleteTextView= layout.findViewById(R.id.autoCompleteTextView);
+        moisture = layout.findViewById(R.id.moisture);
+        autoCompleteTextView = layout.findViewById(R.id.autoCompleteTextView);
         Button button_show = layout.findViewById(R.id.button_show);
         button_show.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,7 +59,6 @@ public class MainFunctionsFragment extends Fragment {
                 }
             }
         });
-
         return layout;
 
     }
@@ -74,11 +72,8 @@ public class MainFunctionsFragment extends Fragment {
             super.onActivityResult(requestCode, resultCode, data);
             return;
         }
-
         if (resultCode == Activity.RESULT_OK) {
             Log.d(TAG, " получено значение из другой активити " + data.getStringExtra(Keys.FAVOURITES));
         }
-
     }
-
 }

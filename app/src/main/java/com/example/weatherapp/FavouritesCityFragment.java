@@ -21,22 +21,19 @@ public class FavouritesCityFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_favourites_city, container, false);
     }
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        layout=view;
+        layout = view;
     }
 
-
-    public void createViewForFavouriteCity(String name){
-        Log.d(TAG, " получено значение "+ name);
+    public void createViewForFavouriteCity(String name) {
+        Log.d(TAG, " получено значение " + name);
         TextView textView = new TextView(getContext());
         textView.setText(name);
         textView.setTextSize(40);
-
-        LinearLayout layoutView = (LinearLayout) layout.findViewById(R.id.liner_for_favourites);;
+        LinearLayout layoutView =layout.findViewById(R.id.liner_for_favourites);
         layoutView.addView(textView);
-
-
     }
 }

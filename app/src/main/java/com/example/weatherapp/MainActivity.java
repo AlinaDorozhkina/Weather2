@@ -29,7 +29,6 @@ public class MainActivity extends AppCompatActivity {
         }
         Toast.makeText(getApplicationContext(), instanceState + " - onCreate()", Toast.LENGTH_SHORT).show();
         Log.d(TAG, "on create");
-
     }
 
     @Override
@@ -39,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
             Log.d(TAG, " вызов onActivityResult" + data.getStringExtra(Keys.FAVOURITES));
             FragmentManager manager = getSupportFragmentManager();
             FavouritesCityFragment fragment = (FavouritesCityFragment) manager.findFragmentById(R.id.fragment_for_favorites);
-            if (fragment!=null) {
+            if (fragment != null) {
                 Log.d(TAG, " передаю значение");
                 fragment.createViewForFavouriteCity(data.getStringExtra(Keys.FAVOURITES));
             } else {
@@ -50,7 +49,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onStart() {
-        // вызывается после onCreate, активити еще не видима,  после  активити станет видимой
         super.onStart();
         Toast.makeText(getApplicationContext(), "onStart()", Toast.LENGTH_SHORT).show();
         Log.d(TAG, "onStart");
@@ -76,10 +74,10 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(getApplicationContext(), "onSaveInstanceState()", Toast.LENGTH_SHORT).show();
         Log.d(TAG, "onSaveInstanceState()");
     }
+
     @Override
     protected void onRestoreInstanceState(Bundle saveInstanceState) {
         super.onRestoreInstanceState(saveInstanceState);
-
         Toast.makeText(getApplicationContext(), "Повторный запуск!! - onRestoreInstanceState()", Toast.LENGTH_SHORT).show();
         Log.d(TAG, "Повторный запуск!! - onRestoreInstanceState()");
     }

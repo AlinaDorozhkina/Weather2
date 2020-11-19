@@ -4,21 +4,20 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class City implements Parcelable {
+    //еще не реализован, в проекте
     private String name;
     private int temperature;
 
-    public City (String name, int temperature){
-        this.name=name;
-        this.temperature=temperature;
+    public City(String name, int temperature) {
+        this.name = name;
+        this.temperature = temperature;
 
     }
+
     protected City(Parcel in) {
-        name =in.readString();
-        temperature=in.readInt();
-        
-
+        name = in.readString();
+        temperature = in.readInt();
     }
-
 
     public static final Creator<City> CREATOR = new Creator<City>() {
         @Override
