@@ -3,6 +3,7 @@ package com.example.weatherapp;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -11,6 +12,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -22,6 +25,8 @@ import android.widget.Toast;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import static com.example.weatherapp.R.drawable.ic_baseline_star_border_24;
+
 public class WeatherDescription extends AppCompatActivity {
     private static final String TAG = WeatherDescription.class.getSimpleName();
     private final String CITY="city";
@@ -31,7 +36,6 @@ public class WeatherDescription extends AppCompatActivity {
     private MaterialButton favourites_button;
     private boolean flag = false;
     private String city;
-    private LinearLayout root;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +45,27 @@ public class WeatherDescription extends AppCompatActivity {
         textViewTemperature = findViewById(R.id.textViewTemperature);
         textViewCity = findViewById(R.id.textViewCity);
         favourites_button = findViewById(R.id.favourites_button);
-        root =findViewById(R.id.root_liner_for_weather_description);
+        favourites_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Resources res = getResources();
+                if (!flag){
+                    Drawable drawable1 = res.getDrawable(R.drawable.ic_baseline_star_24);
+                    favourites_button.setIcon(drawable1);
+                    flag=true;
+                    Snackbar
+                            .make(v, " Город добавлен в избранное: " + city, Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                } else{
+                    Drawable drawable1 = res.getDrawable(ic_baseline_star_border_24);
+                    favourites_button.setIcon(drawable1);
+                    flag=false;
+                    Snackbar
+                            .make(v, " Город удален из избранного : " + city, Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                }
+            }
+        });
 
         city = getIntent().getStringExtra(Keys.CITY);
         if (city != null) {
@@ -78,21 +102,9 @@ public class WeatherDescription extends AppCompatActivity {
         return String.valueOf((int) (Math.random() * 30));
     }
 
-    public void addToFavourites(View view) {
-        if (!flag) {
-           // favourites_button.setIcon(R.drawable.ic_baseline_star_24));
-                    //setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_baseline_star_24));
-            flag = true;
-        } else {
-          //  favourites_button.setIcon(R.drawable.ic_baseline_star_border_24);
-                    //setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_baseline_star_border_24));
-            flag = false;
-        }
-    }
     private void initDataSource(){
         String [] data = getResources().getStringArray(R.array.week);
         initRecycleView(data);
-
     }
 
     @Override
@@ -116,20 +128,6 @@ public class WeatherDescription extends AppCompatActivity {
             intentResult.putExtra(Keys.FAVOURITES, city);
             setResult(RESULT_OK, intentResult);
             Log.d(TAG, "передано " + city);
-            Snackbar
-                    .make(root, " Город добавлен в избранное: " + city, Snackbar.LENGTH_LONG)
-                    .setAction("Добавить?",
-                            new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    Toast.makeText(
-                                            WeatherDescription.this,
-                                            "Добавить?",
-                                            Toast.LENGTH_LONG
-                                    ).show();
-                                }
-                            })
-                    .show();
             finish();
         }
 

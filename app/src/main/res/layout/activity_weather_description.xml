@@ -7,8 +7,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/nebokolos2"
+    android:background="@drawable/house"
     tools:context=".WeatherDescription">
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -35,9 +36,8 @@
             android:layout_margin="@dimen/common_margin_small"
             android:layout_weight="1"
             android:background="#00ffffff"
-            android:onClick="addToFavourites"
             android:contentDescription="@string/addingToFavourite"
-            app:icon="@drawable/ic_baseline_star_border_24"/>
+            app:icon="@drawable/ic_baseline_star_border_24" />
 
 
     </LinearLayout>
@@ -45,7 +45,8 @@
         android:id="@+id/tableLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center">
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/common_margin">
 
         <TableRow
             android:layout_width="match_parent"
@@ -113,21 +114,22 @@
             android:text="@string/web_weather"
             style="@style/my_small_text"/>
 
-        <Button
+        <com.google.android.material.button.MaterialButton
+            style="@style/Widget.MaterialComponents.Button"
             android:id="@+id/buttonWebSearch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="0.5"
-            android:backgroundTint="@color/blues"
+            android:backgroundTint="@color/green"
             android:fontFamily="@font/alice"
-            android:gravity="center"
-            android:textStyle="bold"
             android:text="@string/web_open_button"
             android:textColor="@color/white"
-            android:textSize="@dimen/text_size_super_small" />
+            android:textSize="@dimen/text_size_super_small"
+            />
 
     </LinearLayout>
+
     <FrameLayout
         android:id="@+id/frame_for_extra_layout"
         android:layout_width="match_parent"
