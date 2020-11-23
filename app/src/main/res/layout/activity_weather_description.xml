@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
+    android:id="@+id/root_liner_for_weather_description"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/backforactivity"
+    android:background="@drawable/nebokolos2"
     tools:context=".WeatherDescription">
 
     <LinearLayout
@@ -18,28 +19,25 @@
             android:id="@+id/textViewCity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/common_margin"
-            android:fontFamily="@font/alice"
+            android:layout_margin="@dimen/common_margin"
+            style="@style/my_average_text"
             android:gravity="end"
-            android:textStyle="bold"
             android:layout_weight="1"
-            android:text="@string/city"
-            android:textColor="@color/white"
-            android:textSize="@dimen/text_size_big">
+            android:text="@string/city">
 
         </TextView>
 
-        <ImageButton
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/favourites_button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
+            android:layout_gravity="center"
             android:layout_margin="@dimen/common_margin_small"
             android:layout_weight="1"
             android:background="#00ffffff"
             android:onClick="addToFavourites"
             android:contentDescription="@string/addingToFavourite"
-            app:srcCompat="@android:drawable/btn_star_big_off" />
+            app:icon="@drawable/ic_baseline_star_border_24"/>
 
 
     </LinearLayout>
@@ -59,9 +57,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:textStyle="bold"
-                android:textColor="@color/white"
-                android:textSize="@dimen/text_size_big" />
+                style="@style/my_big_text"/>
 
             <ImageView
                 android:id="@+id/imageViewWeatherGraphic"
@@ -84,12 +80,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:gravity="center"
-                android:textStyle="bold"
                 android:text="@string/weather_description"
-                android:textColor="@color/white"
-                android:fontFamily="@font/alice"
-                android:textSize="@dimen/text_size_average" />
+                android:gravity="center"
+                style="@style/my_average_text"/>
 
         </TableRow>
 
@@ -113,15 +106,12 @@
         <TextView
             android:id="@+id/textWebSite"
             android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_weight="1.5"
             android:gravity="center_horizontal"
             android:layout_gravity="center"
-            android:textSize="@dimen/text_size_small"
-            android:fontFamily="@font/alice"
-            android:layout_height="wrap_content"
             android:text="@string/web_weather"
-            android:textColor="@color/white"
-            android:textStyle="bold"/>
+            style="@style/my_small_text"/>
 
         <Button
             android:id="@+id/buttonWebSearch"

@@ -15,7 +15,12 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.material.button.MaterialButton;
+import com.google.android.material.snackbar.Snackbar;
 
 public class WeatherDescription extends AppCompatActivity {
     private static final String TAG = WeatherDescription.class.getSimpleName();
@@ -23,9 +28,10 @@ public class WeatherDescription extends AppCompatActivity {
     private final String TEMPERATURE = "temp";
     private TextView textViewTemperature;
     private TextView textViewCity;
-    private ImageButton favourites_button;
+    private MaterialButton favourites_button;
     private boolean flag = false;
     private String city;
+    private LinearLayout root;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +41,7 @@ public class WeatherDescription extends AppCompatActivity {
         textViewTemperature = findViewById(R.id.textViewTemperature);
         textViewCity = findViewById(R.id.textViewCity);
         favourites_button = findViewById(R.id.favourites_button);
+        root =findViewById(R.id.root_liner_for_weather_description);
 
         city = getIntent().getStringExtra(Keys.CITY);
         if (city != null) {
@@ -73,10 +80,12 @@ public class WeatherDescription extends AppCompatActivity {
 
     public void addToFavourites(View view) {
         if (!flag) {
-            favourites_button.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), android.R.drawable.btn_star_big_on));
+           // favourites_button.setIcon(R.drawable.ic_baseline_star_24));
+                    //setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_baseline_star_24));
             flag = true;
         } else {
-            favourites_button.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), android.R.drawable.btn_star_big_off));
+          //  favourites_button.setIcon(R.drawable.ic_baseline_star_border_24);
+                    //setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_baseline_star_border_24));
             flag = false;
         }
     }
@@ -107,8 +116,23 @@ public class WeatherDescription extends AppCompatActivity {
             intentResult.putExtra(Keys.FAVOURITES, city);
             setResult(RESULT_OK, intentResult);
             Log.d(TAG, "передано " + city);
+            Snackbar
+                    .make(root, " Город добавлен в избранное: " + city, Snackbar.LENGTH_LONG)
+                    .setAction("Добавить?",
+                            new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    Toast.makeText(
+                                            WeatherDescription.this,
+                                            "Добавить?",
+                                            Toast.LENGTH_LONG
+                                    ).show();
+                                }
+                            })
+                    .show();
             finish();
         }
+
         super.onBackPressed();
     }
 

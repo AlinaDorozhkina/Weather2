@@ -5,25 +5,43 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+
     tools:context=".MainActivity">
+    <ImageView
+        android:id="@+id/settings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/ic_baseline_settings_24"
+        android:layout_gravity="end"
+        android:layout_marginTop="@dimen/common_margin_small"
+        android:layout_marginEnd="@dimen/common_margin_small"
+        android:contentDescription="@string/settings">
+
+    </ImageView>
+
 
     <fragment
         android:id="@+id/fragment_favourites_city"
         android:name="com.example.weatherapp.MainFunctionsFragment"
         android:layout_width="match_parent"
-        android:layout_height="327dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/common_margin_small"
         tools:layout="@layout/fragment_main_functions">
 
     </fragment>
-    <fragment
-        android:id="@+id/fragment_picture"
-        android:name="com.example.weatherapp.PictureFragment"
-        android:layout_width="match_parent"
-        android:layout_height="140dp"
-        tools:layout="@layout/fragment_picture"
+    <TextView
+        android:id="@+id/textViewPopularCities"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/pop_city"
+        android:textColor="@color/blues"
+        style="@style/my_average_text"
+        android:layout_margin="@dimen/common_margin"
         >
 
-    </fragment>
+    </TextView>
+
 
     <fragment
         android:id="@+id/fragment_for_favorites"

@@ -4,8 +4,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="100dp"
-    android:orientation="vertical"
-    android:background="@drawable/bluedark">
+    android:orientation="vertical">
 
     <LinearLayout
         android:id="@+id/liner_for_pressure"
@@ -18,16 +17,14 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/air_pressure"
-            android:textColor="@color/white"
-            android:textSize="@dimen/text_size_small" />
+            style="@style/my_small_text" />
 
         <TextView
             android:id="@+id/textViewPressureValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textColor="@color/white"
-            android:textSize="@dimen/text_size_small" />
+            style="@style/my_small_text"/>
 
     </LinearLayout>
     <LinearLayout
@@ -41,16 +38,14 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/window_speed_checkbox"
-            android:textColor="@color/white"
-            android:textSize="@dimen/text_size_small" />
+            style="@style/my_small_text" />
 
         <TextView
             android:id="@+id/textViewWindSpeedValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1.5"
-            android:textColor="@color/white"
-            android:textSize="@dimen/text_size_small" />
+            style="@style/my_small_text"/>
     </LinearLayout>
     <LinearLayout
         android:id="@+id/liner_for_moisture"
@@ -63,16 +58,14 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/atmospheric_moisture"
-            android:textColor="@color/white"
-            android:textSize="@dimen/text_size_small" />
+            style="@style/my_small_text"/>
 
         <TextView
             android:id="@+id/textViewMoistureValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textColor="@color/white"
-            android:textSize="@dimen/text_size_small" />
+            style="@style/my_small_text" />
 
     </LinearLayout>
 

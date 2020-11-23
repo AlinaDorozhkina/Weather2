@@ -18,6 +18,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.textfield.TextInputEditText;
+
 
 public class MainFunctionsFragment extends Fragment {
     private final static String TAG = MainFunctionsFragment.class.getSimpleName();
@@ -25,7 +28,7 @@ public class MainFunctionsFragment extends Fragment {
     private CheckBox pressure;
     private CheckBox speed;
     private CheckBox moisture;
-    private AutoCompleteTextView autoCompleteTextView;
+    private TextInputEditText autoCompleteTextView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -33,7 +36,7 @@ public class MainFunctionsFragment extends Fragment {
         pressure = layout.findViewById(R.id.pressure);
         speed = layout.findViewById(R.id.speed);
         moisture = layout.findViewById(R.id.moisture);
-        autoCompleteTextView = layout.findViewById(R.id.autoCompleteTextView);
+        autoCompleteTextView = layout.findViewById(R.id.textInput_enter_city);
         Button button_show = layout.findViewById(R.id.button_show);
         button_show.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,7 +58,10 @@ public class MainFunctionsFragment extends Fragment {
                     startActivityForResult(intent, REQUEST_CODE);
 
                 } else {
-                    Toast.makeText(getContext(), R.string.hint_choose_city, Toast.LENGTH_SHORT).show();
+                    Snackbar.make(v, "Выберите город", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+
+                    //Toast.makeText(getContext(), R.string.hint_choose_city, Toast.LENGTH_SHORT).show();
                 }
             }
         });
