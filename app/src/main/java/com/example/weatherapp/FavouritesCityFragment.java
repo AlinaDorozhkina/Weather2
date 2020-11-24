@@ -20,7 +20,6 @@ import java.util.List;
 
 public class FavouritesCityFragment extends Fragment {
     private static final String TAG = FavouritesCityFragment.class.getSimpleName();
-    private View layout;
     private  View view;
 
     @Nullable
@@ -33,7 +32,6 @@ public class FavouritesCityFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        layout = view;
     }
 
     public FavouritesAdapter  setFavoriteCity(ArrayList<String> cities) {
@@ -42,9 +40,7 @@ public class FavouritesCityFragment extends Fragment {
         recyclerView.setLayoutManager(linearLayoutManager);
         FavouritesAdapter favouritesAdapter =new FavouritesAdapter(cities);
         recyclerView.setAdapter(favouritesAdapter);
-
         return favouritesAdapter;
-
     }
 
 

@@ -66,7 +66,6 @@ public class MainFunctionsFragment extends Fragment {
             }
         });
         return layout;
-
     }
 
     @Override

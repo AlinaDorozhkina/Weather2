@@ -2,6 +2,7 @@ package com.example.weatherapp;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.FragmentManager;
@@ -39,18 +40,24 @@ public class WeatherDescription extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        AppCompatDelegate.setDefaultNightMode(
+                AppCompatDelegate.MODE_NIGHT_YES);
+        // хотела установить автоматическую смену темы дня и ночи (по  сути интересна смена бекграунда),
+        // но MODE_NIGHT_AUTO деприкейтид, и не знаю как реализовать такую схему
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weather_description);
-
         textViewTemperature = findViewById(R.id.textViewTemperature);
         textViewCity = findViewById(R.id.textViewCity);
         favourites_button = findViewById(R.id.favourites_button);
+
         favourites_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Resources res = getResources();
                 if (!flag){
                     Drawable drawable1 = res.getDrawable(R.drawable.ic_baseline_star_24);
+                    // метод getDrawable деприкейтид, а на что его надо заменить в данном случае?
+                    // на эмуляторе моя звезда белая при нажатии, хотя должна быть желтой
                     favourites_button.setIcon(drawable1);
                     flag=true;
                     Snackbar

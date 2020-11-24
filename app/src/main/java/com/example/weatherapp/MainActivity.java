@@ -3,6 +3,7 @@ package com.example.weatherapp;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
@@ -10,6 +11,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -17,34 +20,30 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
     private static final String TAG = MainActivity.class.getSimpleName();
-    private final String SAVED_DATA = "savedData";
+    private static final int SETTINGS_CODE = 1;
     private ArrayList<String> favouritesCities;
     private FavouritesCityFragment fragment;
-    private SharedPreferences prefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-      //  load();
-
-//        String instanceState;
-//        if (savedInstanceState == null) {
-//            instanceState = "Первый запуск!";
-//            Log.d(TAG, "лог: первый запуск");
-//        } else {
-//            instanceState = "Повторный запуск!";
-//            Log.d(TAG, "лог: повторный запуск");
-//        }
-//        Toast.makeText(getApplicationContext(), instanceState + " - onCreate()", Toast.LENGTH_SHORT).show();
-//        Log.d(TAG, "on create");
+        ImageView settings = findViewById(R.id.settings);
+        settings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+                startActivityForResult(intent, SETTINGS_CODE);
+            }
+        });
     }
-    private void prepareFavourites (){
+
+    private void prepareFavourites() {
         FragmentManager manager = getSupportFragmentManager();
-        fragment  = (FavouritesCityFragment) manager.findFragmentById(R.id.fragment_for_favorites);
-        if (fragment!=null){
+        fragment = (FavouritesCityFragment) manager.findFragmentById(R.id.fragment_for_favorites);
+        if (fragment != null) {
             fragment.setFavoriteCity(favouritesCities);
         }
     }
@@ -52,9 +51,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == SETTINGS_CODE) {
+            recreate();
+        }
         if (data != null) {
-            if (favouritesCities==null){
-                favouritesCities=new ArrayList<>();
+            if (favouritesCities == null) {
+                favouritesCities = new ArrayList<>();
             }
             favouritesCities.add(data.getStringExtra(Keys.FAVOURITES));
             prepareFavourites();
@@ -98,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(getApplicationContext(), "Повторный запуск!! - onRestoreInstanceState()", Toast.LENGTH_SHORT).show();
         Log.d(TAG, "Повторный запуск!! - onRestoreInstanceState()");
 
-        if (saveInstanceState!=null) {
+        if (saveInstanceState != null) {
             if (saveInstanceState.containsKey("favourites")) {
                 this.favouritesCities = saveInstanceState.getStringArrayList("favourites");
                 prepareFavourites();
@@ -131,6 +133,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
    /* public void save (){
+   Делала эти два метода, чтоб при перезапуске приложения избранные города .Но не получилось
         Set<String> set = new HashSet<>(favouritesCities);
         prefs = getPreferences(MODE_PRIVATE);
         SharedPreferences.Editor ed = prefs.edit();

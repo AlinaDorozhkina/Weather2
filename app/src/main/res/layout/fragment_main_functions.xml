@@ -33,19 +33,19 @@
 
         <com.google.android.material.checkbox.MaterialCheckBox
             android:id="@+id/pressure"
-            style="@style/my_small_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="136dp"
+            style="@style/my_small_text"
             android:text="@string/air_pressure"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.checkbox.MaterialCheckBox
             android:id="@+id/speed"
-            style="@style/my_small_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            style="@style/my_small_text"
             android:layout_marginStart="136dp"
             android:text="@string/window_speed_checkbox"
             app:layout_constraintStart_toStartOf="parent"
@@ -53,9 +53,9 @@
 
         <com.google.android.material.checkbox.MaterialCheckBox
             android:id="@+id/moisture"
-            style="@style/my_small_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            style="@style/my_small_text"
             android:layout_marginStart="136dp"
             android:text="@string/atmospheric_moisture"
             app:layout_constraintStart_toStartOf="parent"
@@ -65,17 +65,11 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/button_show"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_margin="@dimen/common_margin_small"
-        android:layout_marginTop="@dimen/common_margin_small"
-        android:backgroundTint="@color/blues"
-        android:fontFamily="@font/alice"
-        android:text="@string/show_button"
-        android:textColor="@color/white"
-        android:textSize="@dimen/text_size_average"
-        app:cornerRadius="10dp">
+        android:text="@string/show_button">
 
     </com.google.android.material.button.MaterialButton>
 

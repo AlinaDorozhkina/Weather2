@@ -6,14 +6,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
-    android:baselineAligned="false">
+    android:baselineAligned="false"
+    android:background="@drawable/house">
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:layout_weight="1"
-        android:background="@drawable/backforactivity">
+        android:layout_weight="1">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -42,7 +42,6 @@
                 android:layout_margin="@dimen/common_margin_small"
                 android:layout_weight="1"
                 android:background="#00ffffff"
-                android:onClick="addToFavourites"
                 android:contentDescription="@string/addingToFavourite"
                 app:srcCompat="@android:drawable/btn_star_big_off" />
 
@@ -141,8 +140,7 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:layout_weight="1"
-        android:background="@drawable/backforactivity">
+        android:layout_weight="1">
 
         <FrameLayout
             android:id="@+id/frame_for_extra_layout"

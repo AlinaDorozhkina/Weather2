@@ -22,4 +22,5 @@
     <string name="web_open_button">Перейти</string>
     <string name="hint_choose_city">Выберите город</string>
     <string name="settings">настройки</string>
+    <string name="DarkTheme">Темная тема</string>
 </resources>

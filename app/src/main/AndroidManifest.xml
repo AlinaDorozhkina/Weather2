@@ -8,8 +8,12 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.WeatherApp">
-        <activity android:name=".WeatherDescription">
+        android:theme="@style/AppTheme">
+        <activity android:name=".SettingsActivity">
+
+        </activity>
+        <activity android:name=".WeatherDescription"
+            android:theme="@style/Theme.WeatherApp">
 
         </activity>
         <activity android:name=".MainActivity">
