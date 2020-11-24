@@ -14,12 +14,13 @@
         <!-- Customize your theme here. -->
     </style>
 
-    <style name="AppTheme" parent ="Theme.MaterialComponents.Light.DarkActionBar">
-        <item name="colorPrimary">@color/purple_500</item>
+    <style name="AppDayTheme" parent ="Theme.MaterialComponents.Light.DarkActionBar">
+        <item name="colorPrimary">@color/white</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
         <item name="colorOnPrimary">@color/white</item>
+    </style>
 
-
-
+    <style name="AppDarkTheme" parent="Theme.MaterialComponents">
+        <item name="android:windowBackground">@drawable/bluedark</item>
     </style>
 </resources>

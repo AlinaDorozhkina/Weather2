@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/newback2"
 
     tools:context=".MainActivity">
     <ImageView
@@ -35,10 +36,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="@string/pop_city"
-        android:textColor="@color/blues"
+        android:textColor="@color/white"
         style="@style/my_average_text"
-        android:layout_margin="@dimen/common_margin"
-        >
+        android:layout_margin="@dimen/common_margin">
 
     </TextView>
 

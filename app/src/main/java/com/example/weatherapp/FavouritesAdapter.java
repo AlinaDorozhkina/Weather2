@@ -9,15 +9,12 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class FavouritesAdapter extends RecyclerView.Adapter<FavouritesAdapter.FavouritesViewHolder> {
-    private List<String> cities;
+    private ArrayList<String> cities;
 
-    public FavouritesAdapter(String city) {
-
-        cities = new ArrayList<>();
-        cities.add(city);
+    public FavouritesAdapter(ArrayList<String> cities) {
+        this.cities = cities;
     }
 
     @NonNull
@@ -30,7 +27,6 @@ public class FavouritesAdapter extends RecyclerView.Adapter<FavouritesAdapter.Fa
     @Override
     public void onBindViewHolder(@NonNull FavouritesViewHolder holder, int position) {
         holder.addCity(cities.get(position));
-
     }
 
     @Override
@@ -43,9 +39,10 @@ public class FavouritesAdapter extends RecyclerView.Adapter<FavouritesAdapter.Fa
 
         public FavouritesViewHolder(@NonNull View itemView) {
             super(itemView);
-            textView_favourite_city=itemView.findViewById(R.id.textView_favourite_city);
+            textView_favourite_city = itemView.findViewById(R.id.textView_favourite_city);
         }
-        public void addCity(String name){
+
+        public void addCity(String name) {
             textView_favourite_city.setText(name);
         }
     }

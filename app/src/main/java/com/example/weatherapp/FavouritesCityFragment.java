@@ -14,6 +14,10 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class FavouritesCityFragment extends Fragment {
     private static final String TAG = FavouritesCityFragment.class.getSimpleName();
     private View layout;
@@ -32,13 +36,11 @@ public class FavouritesCityFragment extends Fragment {
         layout = view;
     }
 
-    public FavouritesAdapter createViewForFavouriteCity(String name) {
-        Log.d(TAG, " получено значение " + name);
-
+    public FavouritesAdapter  setFavoriteCity(ArrayList<String> cities) {
         RecyclerView recyclerView=view.findViewById(R.id.recycleView_for_favourites);
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);
-        FavouritesAdapter favouritesAdapter =new FavouritesAdapter(name);
+        FavouritesAdapter favouritesAdapter =new FavouritesAdapter(cities);
         recyclerView.setAdapter(favouritesAdapter);
 
         return favouritesAdapter;
