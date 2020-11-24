@@ -137,7 +137,6 @@ public class WeatherDescription extends AppCompatActivity {
             Log.d(TAG, "передано " + city);
             finish();
         }
-
         super.onBackPressed();
     }
 
@@ -150,9 +149,7 @@ public class WeatherDescription extends AppCompatActivity {
         DividerItemDecoration itemDecoration = new DividerItemDecoration(this,  LinearLayoutManager.VERTICAL);
         itemDecoration.setDrawable(getDrawable(R.drawable.separator));
         recyclerView.addItemDecoration(itemDecoration);
-
         recyclerView.setAdapter(weekTempAdapter);
         return weekTempAdapter;
-
     }
 }
