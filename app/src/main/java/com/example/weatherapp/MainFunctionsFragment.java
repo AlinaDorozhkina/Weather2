@@ -56,12 +56,9 @@ public class MainFunctionsFragment extends Fragment {
                         intent.putExtra(Keys.MOISTURE, true);
                     }
                     startActivityForResult(intent, REQUEST_CODE);
-
                 } else {
-                    Snackbar.make(v, "Выберите город", Snackbar.LENGTH_LONG)
+                    Snackbar.make(v, R.string.enter_city, Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
-
-                    //Toast.makeText(getContext(), R.string.hint_choose_city, Toast.LENGTH_SHORT).show();
                 }
             }
         });

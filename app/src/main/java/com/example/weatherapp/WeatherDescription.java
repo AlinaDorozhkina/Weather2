@@ -3,26 +3,18 @@ package com.example.weatherapp;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
-import androidx.core.content.ContextCompat;
-import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -60,15 +52,17 @@ public class WeatherDescription extends AppCompatActivity {
                     // на эмуляторе моя звезда белая при нажатии, хотя должна быть желтой
                     favourites_button.setIcon(drawable1);
                     flag=true;
+                    String message = getString(R.string.snackbar_message_add, city);
                     Snackbar
-                            .make(v, " Город добавлен в избранное: " + city, Snackbar.LENGTH_LONG)
+                            .make(v,message, Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
                 } else{
+                    String message = getString(R.string.snackbar_message_delete, city);
                     Drawable drawable1 = res.getDrawable(ic_baseline_star_border_24);
                     favourites_button.setIcon(drawable1);
                     flag=false;
                     Snackbar
-                            .make(v, " Город удален из избранного : " + city, Snackbar.LENGTH_LONG)
+                            .make(v, message, Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
                 }
             }
