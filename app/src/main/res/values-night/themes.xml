@@ -6,7 +6,7 @@
         <item name="colorPrimary">@color/blues</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
         <item name="colorOnPrimary">@color/black</item>
-        <item name="android:textViewStyle">@style/my_average_text</item>
+        <item name="android:textViewStyle">@style/my_small_text</item>
         <item name="materialButtonStyle">@style/my_button</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>

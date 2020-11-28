@@ -24,7 +24,6 @@ public class MainActivity extends BaseActivity {
     private static final String TAG = MainActivity.class.getSimpleName();
     private static final int SETTINGS_CODE = 1;
     private ArrayList<String> favouritesCities;
-    private FavouritesCityFragment fragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +41,7 @@ public class MainActivity extends BaseActivity {
 
     private void prepareFavourites() {
         FragmentManager manager = getSupportFragmentManager();
-        fragment = (FavouritesCityFragment) manager.findFragmentById(R.id.fragment_for_favorites);
+        FavouritesCityFragment fragment = (FavouritesCityFragment) manager.findFragmentById(R.id.fragment_for_favorites);
         if (fragment != null) {
             fragment.setFavoriteCity(favouritesCities);
         }
@@ -120,9 +119,6 @@ public class MainActivity extends BaseActivity {
         super.onRestart();
         Toast.makeText(getApplicationContext(), "onRestart()", Toast.LENGTH_SHORT).show();
         Log.d(TAG, "onRestart");
-//        if (favouritesCities!=null) {
-//            save();
-//        }
     }
 
     @Override
@@ -132,21 +128,5 @@ public class MainActivity extends BaseActivity {
         Log.d(TAG, "onDestroy()");
     }
 
-   /* public void save (){
-   Делала эти два метода, чтоб при перезапуске приложения избранные города .Но не получилось
-        Set<String> set = new HashSet<>(favouritesCities);
-        prefs = getPreferences(MODE_PRIVATE);
-        SharedPreferences.Editor ed = prefs.edit();
-        ed.putStringSet(SAVED_DATA, set);
-        ed.apply();
-    }
-    public void load (){
-        prefs = getPreferences(MODE_PRIVATE);
-        Set<String> set = new HashSet<>(favouritesCities);
-        Set<String> saved = prefs.getStringSet(SAVED_DATA, set);
-        favouritesCities = new ArrayList<>(saved);
-    }
-
-    */
 
 }

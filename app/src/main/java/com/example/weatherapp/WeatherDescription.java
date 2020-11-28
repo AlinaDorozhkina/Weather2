@@ -3,6 +3,7 @@ package com.example.weatherapp;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -11,21 +12,37 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.snackbar.Snackbar;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 import static com.example.weatherapp.R.drawable.ic_baseline_star_border_24;
 
 public class WeatherDescription extends AppCompatActivity {
     private static final String TAG = WeatherDescription.class.getSimpleName();
+    private static final String API_CODE = "192b737722d8aace39cdae0123e27a47";
+    private static final String WEATHER_URL ="http://api.openweathermap.org/data/2.5/weather?q=%s&APPID=%s&lang=ru&units=metric";
     private final String CITY="city";
     private final String TEMPERATURE = "temp";
     private TextView textViewTemperature;
     private TextView textViewCity;
+    private TextView textViewDescription;
     private MaterialButton favourites_button;
     private boolean flag = false;
     private String city;
@@ -33,46 +50,20 @@ public class WeatherDescription extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         AppCompatDelegate.setDefaultNightMode(
-                AppCompatDelegate.MODE_NIGHT_YES);
-        // хотела установить автоматическую смену темы дня и ночи (по  сути интересна смена бекграунда),
-        // но MODE_NIGHT_AUTO деприкейтид, и не знаю как реализовать такую схему
+                AppCompatDelegate.MODE_NIGHT_NO);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weather_description);
         textViewTemperature = findViewById(R.id.textViewTemperature);
         textViewCity = findViewById(R.id.textViewCity);
-        favourites_button = findViewById(R.id.favourites_button);
-
-        favourites_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Resources res = getResources();
-                if (!flag){
-                    Drawable drawable1 = res.getDrawable(R.drawable.ic_baseline_star_24);
-                    // метод getDrawable деприкейтид, а на что его надо заменить в данном случае?
-                    // на эмуляторе моя звезда белая при нажатии, хотя должна быть желтой
-                    favourites_button.setIcon(drawable1);
-                    flag=true;
-                    String message = getString(R.string.snackbar_message_add, city);
-                    Snackbar
-                            .make(v,message, Snackbar.LENGTH_LONG)
-                            .setAction("Action", null).show();
-                } else{
-                    String message = getString(R.string.snackbar_message_delete, city);
-                    Drawable drawable1 = res.getDrawable(ic_baseline_star_border_24);
-                    favourites_button.setIcon(drawable1);
-                    flag=false;
-                    Snackbar
-                            .make(v, message, Snackbar.LENGTH_LONG)
-                            .setAction("Action", null).show();
-                }
-            }
-        });
-
+        textViewDescription = findViewById(R.id.textViewDescription);
         city = getIntent().getStringExtra(Keys.CITY);
         if (city != null) {
             Log.d(TAG, " получен бандл " + city);
-            textViewCity.setText(city);
-            textViewTemperature.setText(String.format("%s °", showRandomValue()));
+            //textViewCity.setText(city);
+            DownloadWeatherTask task = new DownloadWeatherTask();
+            String url = String.format(WEATHER_URL, city, API_CODE);
+            task.execute(url);
+            //textViewTemperature.setText(String.format("%s °", showRandomValue()));
         }
         boolean isPressureTrue = getIntent().getBooleanExtra(Keys.PRESSURE, false);
         boolean isWindSpeedTrue = getIntent().getBooleanExtra(Keys.WIND_SPEED, false);
@@ -97,10 +88,32 @@ public class WeatherDescription extends AppCompatActivity {
             transaction.commit();
         }
         initDataSource();
-    }
 
-    private String showRandomValue() {
-        return String.valueOf((int) (Math.random() * 30));
+        favourites_button = findViewById(R.id.favourites_button);
+        favourites_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Resources res = getResources();
+                if (!flag){
+                    Drawable drawable1 = ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_baseline_star_24);
+                    // на эмуляторе моя звезда белая при нажатии, хотя должна быть желтой
+                    favourites_button.setIcon(drawable1);
+                    flag=true;
+                    String message = getString(R.string.snackbar_message_add, city);
+                    Snackbar
+                            .make(v,message, Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                } else{
+                    String message = getString(R.string.snackbar_message_delete, city);
+                    Drawable drawable1 = ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_baseline_star_border_24);;
+                    favourites_button.setIcon(drawable1);
+                    flag=false;
+                    Snackbar
+                            .make(v, message, Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                }
+            }
+        });
     }
 
     private void initDataSource(){
@@ -145,5 +158,53 @@ public class WeatherDescription extends AppCompatActivity {
         recyclerView.addItemDecoration(itemDecoration);
         recyclerView.setAdapter(weekTempAdapter);
         return weekTempAdapter;
+    }
+
+    private  class DownloadWeatherTask extends AsyncTask<String, Void, String> {
+        @Override
+        protected String doInBackground(String... strings) {
+            URL url = null;
+            HttpURLConnection urlConnection = null;
+            StringBuilder result = new StringBuilder();
+            try {
+                url = new URL(strings[0]);
+                urlConnection = (HttpURLConnection) url.openConnection();
+                InputStream inputStream = urlConnection.getInputStream();
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+                BufferedReader reader = new BufferedReader(inputStreamReader);
+                String line = reader.readLine();
+                while (line != null) {
+                    result.append(line);
+                    line = reader.readLine();
+                }
+                Log.d(TAG, result.toString());
+                return result.toString();
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } finally {
+                if (urlConnection != null) {
+                    urlConnection.disconnect();
+                }
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            try {
+                JSONObject jsonObject = new JSONObject(s);
+                String city = jsonObject.getString("name");
+                String temp = jsonObject.getJSONObject("main").getString("temp");
+                String description = jsonObject.getJSONArray("weather").getJSONObject(0).getString("description");
+                textViewTemperature.setText(String.format("%s °", temp));
+                textViewCity.setText(city);
+                textViewDescription.setText(description);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

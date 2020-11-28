@@ -1,73 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    android:id="@+id/root_liner_for_extra_data"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="100dp"
-    android:orientation="vertical">
 
-    <LinearLayout
-        android:id="@+id/liner_for_pressure"
+    <TableLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/tableloyout_extra"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_margin="@dimen/common_margin">
+
+    <TableRow
+        android:id="@+id/raw_air_pressure"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
         <TextView
             android:id="@+id/textViewPressure"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/air_pressure"
-            style="@style/my_small_text" />
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_small" />
 
         <TextView
             android:id="@+id/textViewPressureValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            style="@style/my_small_text"/>
+            android:textSize="@dimen/text_size_small"
+            android:textColor="@color/white" />
+    </TableRow>
 
-    </LinearLayout>
-    <LinearLayout
-        android:id="@+id/liner_for_windspeed"
+    <TableRow
+        android:id="@+id/raw_wind_speed"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="match_parent">
+
         <TextView
             android:id="@+id/textViewSpeed"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/window_speed_checkbox"
-            style="@style/my_small_text" />
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_small" />
 
         <TextView
             android:id="@+id/textViewWindSpeedValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1.5"
-            style="@style/my_small_text"/>
-    </LinearLayout>
-    <LinearLayout
-        android:id="@+id/liner_for_moisture"
+            android:textColor="@color/white"
+            android:layout_weight="1"
+            android:textSize="@dimen/text_size_small"/>
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/raw_moisture"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="match_parent">
+
         <TextView
             android:id="@+id/textViewMoisture"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/atmospheric_moisture"
-            style="@style/my_small_text"/>
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_small" />
 
         <TextView
             android:id="@+id/textViewMoistureValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            style="@style/my_small_text" />
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_small"/>
+    </TableRow>
 
-    </LinearLayout>
-
-
-</LinearLayout>
+</TableLayout>
