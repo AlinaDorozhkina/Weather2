@@ -9,15 +9,15 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import android.content.Intent;
-import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
+
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -32,13 +32,12 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import static com.example.weatherapp.R.drawable.ic_baseline_star_border_24;
 
 public class WeatherDescription extends AppCompatActivity {
     private static final String TAG = WeatherDescription.class.getSimpleName();
     private static final String API_CODE = "192b737722d8aace39cdae0123e27a47";
-    private static final String WEATHER_URL ="http://api.openweathermap.org/data/2.5/weather?q=%s&APPID=%s&lang=ru&units=metric";
-    private final String CITY="city";
+    private static final String WEATHER_URL = "http://api.openweathermap.org/data/2.5/weather?q=%s&APPID=%s&lang=ru&units=metric";
+    private final String CITY = "city";
     private final String TEMPERATURE = "temp";
     private TextView textViewTemperature;
     private TextView textViewCity;
@@ -53,17 +52,14 @@ public class WeatherDescription extends AppCompatActivity {
                 AppCompatDelegate.MODE_NIGHT_NO);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weather_description);
-        textViewTemperature = findViewById(R.id.textViewTemperature);
-        textViewCity = findViewById(R.id.textViewCity);
-        textViewDescription = findViewById(R.id.textViewDescription);
+        init();
+
         city = getIntent().getStringExtra(Keys.CITY);
         if (city != null) {
             Log.d(TAG, " получен бандл " + city);
-            //textViewCity.setText(city);
             DownloadWeatherTask task = new DownloadWeatherTask();
             String url = String.format(WEATHER_URL, city, API_CODE);
             task.execute(url);
-            //textViewTemperature.setText(String.format("%s °", showRandomValue()));
         }
         boolean isPressureTrue = getIntent().getBooleanExtra(Keys.PRESSURE, false);
         boolean isWindSpeedTrue = getIntent().getBooleanExtra(Keys.WIND_SPEED, false);
@@ -88,36 +84,42 @@ public class WeatherDescription extends AppCompatActivity {
             transaction.commit();
         }
         initDataSource();
-
-        favourites_button = findViewById(R.id.favourites_button);
-        favourites_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Resources res = getResources();
-                if (!flag){
-                    Drawable drawable1 = ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_baseline_star_24);
-                    // на эмуляторе моя звезда белая при нажатии, хотя должна быть желтой
-                    favourites_button.setIcon(drawable1);
-                    flag=true;
-                    String message = getString(R.string.snackbar_message_add, city);
-                    Snackbar
-                            .make(v,message, Snackbar.LENGTH_LONG)
-                            .setAction("Action", null).show();
-                } else{
-                    String message = getString(R.string.snackbar_message_delete, city);
-                    Drawable drawable1 = ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_baseline_star_border_24);;
-                    favourites_button.setIcon(drawable1);
-                    flag=false;
-                    Snackbar
-                            .make(v, message, Snackbar.LENGTH_LONG)
-                            .setAction("Action", null).show();
-                }
-            }
-        });
     }
 
-    private void initDataSource(){
-        String [] data = getResources().getStringArray(R.array.week);
+    private void init() {
+        textViewTemperature = findViewById(R.id.textViewTemperature);
+        textViewCity = findViewById(R.id.textViewCity);
+        textViewDescription = findViewById(R.id.textViewDescription);
+        favourites_button = findViewById(R.id.favourites_button);
+        favourites_button.setOnClickListener(clickListener);
+    }
+
+    View.OnClickListener clickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            if (!flag) {
+                Drawable drawable1 = ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_baseline_star_24);
+                // на эмуляторе моя звезда белая при нажатии, хотя должна быть желтой
+                favourites_button.setIcon(drawable1);
+                flag = true;
+                String message = getString(R.string.snackbar_message_add, city);
+                Snackbar
+                        .make(v, message, Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            } else {
+                String message = getString(R.string.snackbar_message_delete, city);
+                Drawable drawable1 = ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_baseline_star_border_24);
+                favourites_button.setIcon(drawable1);
+                flag = false;
+                Snackbar
+                        .make(v, message, Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        }
+    };
+
+    private void initDataSource() {
+        String[] data = getResources().getStringArray(R.array.week);
         initRecycleView(data);
     }
 
@@ -147,20 +149,20 @@ public class WeatherDescription extends AppCompatActivity {
         super.onBackPressed();
     }
 
-    private WeekTempAdapter initRecycleView(String [] data_source){
-        RecyclerView recyclerView=findViewById(R.id.recycleView_for_week_weather);
+    private WeekTempAdapter initRecycleView(String[] data_source) {
+        RecyclerView recyclerView = findViewById(R.id.recycleView_for_week_weather);
         recyclerView.setHasFixedSize(true);
-        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);
-        WeekTempAdapter weekTempAdapter =new WeekTempAdapter(data_source);
-        DividerItemDecoration itemDecoration = new DividerItemDecoration(this,  LinearLayoutManager.VERTICAL);
+        WeekTempAdapter weekTempAdapter = new WeekTempAdapter(data_source);
+        DividerItemDecoration itemDecoration = new DividerItemDecoration(this, LinearLayoutManager.VERTICAL);
         itemDecoration.setDrawable(getDrawable(R.drawable.separator));
         recyclerView.addItemDecoration(itemDecoration);
         recyclerView.setAdapter(weekTempAdapter);
         return weekTempAdapter;
     }
 
-    private  class DownloadWeatherTask extends AsyncTask<String, Void, String> {
+    private class DownloadWeatherTask extends AsyncTask<String, Void, String> {
         @Override
         protected String doInBackground(String... strings) {
             URL url = null;
