@@ -35,7 +35,6 @@ import java.net.URL;
 
 public class WeatherDescription extends AppCompatActivity {
     private static final String TAG = WeatherDescription.class.getSimpleName();
-    private static final String API_CODE = "192b737722d8aace39cdae0123e27a47";
     private static final String WEATHER_URL = "http://api.openweathermap.org/data/2.5/weather?q=%s&APPID=%s&lang=ru&units=metric";
     private final String CITY = "city";
     private final String TEMPERATURE = "temp";
@@ -58,30 +57,8 @@ public class WeatherDescription extends AppCompatActivity {
         if (city != null) {
             Log.d(TAG, " получен бандл " + city);
             DownloadWeatherTask task = new DownloadWeatherTask();
-            String url = String.format(WEATHER_URL, city, API_CODE);
+            String url = String.format(WEATHER_URL, city, BuildConfig.WEATHER_API_KEY);
             task.execute(url);
-        }
-        boolean isPressureTrue = getIntent().getBooleanExtra(Keys.PRESSURE, false);
-        boolean isWindSpeedTrue = getIntent().getBooleanExtra(Keys.WIND_SPEED, false);
-        boolean isMoistureTrue = getIntent().getBooleanExtra(Keys.MOISTURE, false);
-
-        if (isPressureTrue || isWindSpeedTrue || isMoistureTrue) {
-            FragmentManager manager = getSupportFragmentManager();
-            FragmentTransaction transaction = manager.beginTransaction();
-            ExtraDataFragment fragment = new ExtraDataFragment();
-            transaction.add(R.id.frame_for_extra_layout, fragment);
-            Bundle bundle = new Bundle();
-            if (isPressureTrue) {
-                bundle.putBoolean(Keys.PRESSURE, true);
-            }
-            if (isWindSpeedTrue) {
-                bundle.putBoolean(Keys.WIND_SPEED, true);
-            }
-            if (isMoistureTrue) {
-                bundle.putBoolean(Keys.MOISTURE, true);
-            }
-            fragment.setArguments(bundle);
-            transaction.commit();
         }
         initDataSource();
     }
@@ -99,7 +76,6 @@ public class WeatherDescription extends AppCompatActivity {
         public void onClick(View v) {
             if (!flag) {
                 Drawable drawable1 = ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_baseline_star_24);
-                // на эмуляторе моя звезда белая при нажатии, хотя должна быть желтой
                 favourites_button.setIcon(drawable1);
                 flag = true;
                 String message = getString(R.string.snackbar_message_add, city);
@@ -162,6 +138,35 @@ public class WeatherDescription extends AppCompatActivity {
         return weekTempAdapter;
     }
 
+    private void displayWeather(String temp, String city, String description, String pressure, String windSpeed,String moisture){
+        textViewTemperature.setText(String.format("%s °", temp));
+        textViewCity.setText(city);
+        textViewDescription.setText(description);
+        boolean isPressureTrue = getIntent().getBooleanExtra(Keys.PRESSURE, false);
+        boolean isWindSpeedTrue = getIntent().getBooleanExtra(Keys.WIND_SPEED, false);
+        boolean isMoistureTrue = getIntent().getBooleanExtra(Keys.MOISTURE, false);
+
+        if (isPressureTrue || isWindSpeedTrue || isMoistureTrue) {
+            FragmentManager manager = getSupportFragmentManager();
+            FragmentTransaction transaction = manager.beginTransaction();
+            ExtraDataFragment fragment = new ExtraDataFragment();
+            transaction.add(R.id.frame_for_extra_layout, fragment);
+            Bundle bundle = new Bundle();
+            if (isPressureTrue) {
+                bundle.putString(Keys.PRESSURE, pressure);
+            }
+            if (isWindSpeedTrue) {
+                bundle.putString(Keys.WIND_SPEED, windSpeed);
+
+            }
+            if (isMoistureTrue) {
+                bundle.putString(Keys.MOISTURE, moisture);
+            }
+            fragment.setArguments(bundle);
+            transaction.commit();
+        }
+    }
+
     private class DownloadWeatherTask extends AsyncTask<String, Void, String> {
         @Override
         protected String doInBackground(String... strings) {
@@ -201,9 +206,10 @@ public class WeatherDescription extends AppCompatActivity {
                 String city = jsonObject.getString("name");
                 String temp = jsonObject.getJSONObject("main").getString("temp");
                 String description = jsonObject.getJSONArray("weather").getJSONObject(0).getString("description");
-                textViewTemperature.setText(String.format("%s °", temp));
-                textViewCity.setText(city);
-                textViewDescription.setText(description);
+                String windSpeed = jsonObject.getJSONObject("wind").getString("speed");
+                String pressure = jsonObject.getJSONObject("main").getString("pressure");
+                String moisture = jsonObject.getJSONObject("main").getString("humidity");
+                displayWeather(temp, city, description,pressure,windSpeed,moisture);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
