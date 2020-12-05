@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -33,11 +34,12 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 
-public class WeatherDescription extends AppCompatActivity {
+public class WeatherDescription extends AppCompatActivity implements CurrentWeatherFragment.OnFragment1DataListener {
     private static final String TAG = WeatherDescription.class.getSimpleName();
     private static final String WEATHER_URL = "http://api.openweathermap.org/data/2.5/forecast?q=%s&lang=ru&units=metric&appid=%s";
     private boolean flag = false;
     private String city;
+    private String cityFavourite;
     private CurrentWeather currentWeather;
 
 
@@ -51,9 +53,6 @@ public class WeatherDescription extends AppCompatActivity {
 
         DownloadWeatherTask task = new DownloadWeatherTask();
         task.execute(String.format(WEATHER_URL, city, BuildConfig.WEATHER_API_KEY));
-
-        //show();
-
     }
 
 
@@ -132,22 +131,24 @@ public class WeatherDescription extends AppCompatActivity {
 
             return "Date";
         }
-
-//        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd  HH:mm:ss", Locale.getDefault());
-//        SimpleDateFormat output = new SimpleDateFormat("d MMM", Locale.getDefault());
-//        String formattedTime;
-//        try {
-//            Date res = df.parse(data);
-//            formattedTime = output.format(res); // Это результат
-//
-//        } catch (ParseException e) {
-//            e.printStackTrace();
-//            Log.v("ошибка", " ошибка");
-//        }
-//
-//        return formattedTime;
     }
 
+    @Override
+    public void onFragment1DataListener(String string) {
+        cityFavourite=city;
+
+    }
+    @Override
+    public void onBackPressed() {
+        if (cityFavourite!=null) {
+            Intent intentResult = new Intent(WeatherDescription.this, MainActivity.class);
+            intentResult.putExtra(Keys.FAVOURITES, cityFavourite);
+            setResult(RESULT_OK, intentResult);
+            Log.d(TAG, "передано " + cityFavourite);
+            finish();
+        }
+        super.onBackPressed();
+    }
 
 
     private class DownloadWeatherTask extends AsyncTask<String, Void, String> {

@@ -41,7 +41,7 @@ public class CurrentWeatherFragment extends Fragment {
     private TextView textViewWindSpeedValue;
     private TextView textViewPressure;
     private TextView textViewSpeed;
-    private TextView textViewData;
+    private OnFragment1DataListener mListener;
 
     @Nullable
     @Override
@@ -57,7 +57,7 @@ public class CurrentWeatherFragment extends Fragment {
         textViewPressure =layout.findViewById(R.id.textViewPressure);
         textViewSpeed =layout.findViewById(R.id.textViewSpeed);
         imageViewWeatherIcon = layout.findViewById(R.id.imageViewWeatherIcon);
-        textViewData = layout.findViewById(R.id.textViewData);
+        TextView textViewData = layout.findViewById(R.id.textViewData);
         textViewData.setText(getTodayDateInStringFormat());
         context = getActivity();
         return layout;
@@ -103,19 +103,20 @@ public class CurrentWeatherFragment extends Fragment {
     private View.OnClickListener clickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            if (!flag) {
-                flag = true;
+//            if (!flag) {
+//                flag = true;
                 String message = getString(R.string.snackbar_message_add, city);
+                mListener.onFragment1DataListener(city);
                 Snackbar
                         .make(v, message, Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
-            } else {
-                String message = getString(R.string.snackbar_message_delete, city);
-                flag = false;
-                Snackbar
-                        .make(v, message, Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
+//            } else {
+//                String message = getString(R.string.snackbar_message_delete, city);
+//                flag = false;
+//                Snackbar
+//                        .make(v, message, Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+//            }
         }
     };
 
@@ -129,5 +130,20 @@ public class CurrentWeatherFragment extends Fragment {
         Calendar c = Calendar.getInstance();
         SimpleDateFormat df = new SimpleDateFormat("E, d MMMM", Locale.getDefault());
         return df.format(c.getTime());
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof OnFragment1DataListener) {
+            mListener = (OnFragment1DataListener) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " must implement OnFragment1DataListener");
+        }
+    }
+
+    public interface OnFragment1DataListener {
+        void onFragment1DataListener(String string);
     }
 }
