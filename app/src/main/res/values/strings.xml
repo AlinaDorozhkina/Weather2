@@ -4,7 +4,7 @@
     <string name="show_button">Показать</string>
     <string name="enter_city">Введите город</string>
     <string name="pop_city">Избранное</string>
-    <string name="window_speed_checkbox">Скорость ветра</string>
+    <string name="window_speed_checkbox">Ветер</string>
     <string name="air_pressure">Давление</string>
     <string name="atmospheric_moisture">Влажность</string>
     <string name="extras">Хотите узнать?</string>
@@ -23,6 +23,7 @@
     <string name="hint_choose_city">Выберите город</string>
     <string name="settings">настройки</string>
     <string name="DarkTheme">Темная тема</string>
-    <string name ="snackbar_message_add">"Город добавлен в избранное: %s"</string>
-    <string name ="snackbar_message_delete">Город удален из избранного: %s</string>
+    <string name="snackbar_message_add">"Город добавлен в избранное: %s"</string>
+    <string name="snackbar_message_delete">Город удален из избранного: %s</string>
+    <string name="data">дата</string>
 </resources>

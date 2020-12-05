@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    tools:context=".MainFunctionsFragment">
+    tools:context=".fragments.MainFunctionsFragment">
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/text_input_layout_enter_city"
@@ -26,46 +26,34 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constrate"
+    <LinearLayout
+        android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:orientation="horizontal">
 
         <com.google.android.material.checkbox.MaterialCheckBox
             android:id="@+id/pressure"
+            style="@style/my_small_text"
+            android:layout_weight="1"
+            android:layout_margin="@dimen/common_margin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="136dp"
-            style="@style/my_small_text"
-            android:text="@string/air_pressure"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:text="@string/air_pressure" />
 
         <com.google.android.material.checkbox.MaterialCheckBox
             android:id="@+id/speed"
+            style="@style/my_small_text"
+            android:layout_margin="@dimen/common_margin"
+            android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/my_small_text"
-            android:layout_marginStart="136dp"
-            android:text="@string/window_speed_checkbox"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/pressure" />
+            android:text="@string/window_speed_checkbox" />
 
-        <com.google.android.material.checkbox.MaterialCheckBox
-            android:id="@+id/moisture"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/my_small_text"
-            android:layout_marginStart="136dp"
-            android:text="@string/atmospheric_moisture"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/speed" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/button_show"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_margin="@dimen/common_margin_small"

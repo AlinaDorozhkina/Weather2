@@ -4,7 +4,7 @@
     <dimen name="common_margin_small">10dp</dimen>
     <dimen name="common_margin_big">50dp</dimen>
     <dimen name="text_size_big">45sp</dimen>
-    <dimen name="text_size_average">30sp</dimen>
-    <dimen name="text_size_small">20sp</dimen>
-    <dimen name="text_size_super_small">15sp</dimen>
+    <dimen name="text_size_average">40sp</dimen>
+    <dimen name="text_size_small">25sp</dimen>
+    <dimen name="text_size_super_small">20sp</dimen>
 </resources>

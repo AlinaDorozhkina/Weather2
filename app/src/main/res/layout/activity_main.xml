@@ -22,29 +22,19 @@
 
     <fragment
         android:id="@+id/fragment_favourites_city"
-        android:name="com.example.weatherapp.MainFunctionsFragment"
+        android:name="com.example.weatherapp.fragments.MainFunctionsFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/common_margin_small"
         tools:layout="@layout/fragment_main_functions">
 
     </fragment>
-    <TextView
-        android:id="@+id/textViewPopularCities"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="@string/pop_city"
-        android:textColor="@color/white"
-        style="@style/my_average_text"
-        android:layout_margin="@dimen/common_margin">
 
-    </TextView>
 
 
     <fragment
         android:id="@+id/fragment_for_favorites"
-        android:name="com.example.weatherapp.FavouritesCityFragment"
+        android:name="com.example.weatherapp.fragments.FavouritesCityFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:layout="@layout/fragment_favourites_city">

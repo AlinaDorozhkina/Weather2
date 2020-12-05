@@ -15,7 +15,7 @@
         android:orientation="vertical">
         <fragment
             android:id="@+id/fragment_favourites_city"
-            android:name="com.example.weatherapp.MainFunctionsFragment"
+            android:name="com.example.weatherapp.fragments.MainFunctionsFragment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:layout="@layout/fragment_main_functions">
@@ -31,7 +31,7 @@
         android:layout_weight="1">
         <fragment
             android:id="@+id/fragment_for_favorites"
-            android:name="com.example.weatherapp.FavouritesCityFragment"
+            android:name="com.example.weatherapp.fragments.FavouritesCityFragment"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             tools:layout="@layout/fragment_favourites_city">
