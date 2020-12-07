@@ -1,8 +1,8 @@
 package com.example.weatherapp.current.weather.entity;
 
 public class WeatherRequest {
-private City city;
-private List [] list;
+    private City city;
+    private List[] list;
 
     public City getCity() {
         return city;

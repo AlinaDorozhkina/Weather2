@@ -2,7 +2,7 @@ package com.example.weatherapp.current.weather.entity;
 
 public class List {
     private Main main;
-    private Weather [] weather;
+    private Weather[] weather;
     private Wind wind;
     private String dt_txt;
 

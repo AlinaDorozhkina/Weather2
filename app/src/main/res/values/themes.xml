@@ -2,7 +2,6 @@
     <!-- Base application theme. -->
     <style name="Theme.WeatherApp" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="android:windowBackground">@drawable/house</item>
         <item name="colorPrimary">@color/black</item>
         <item name="colorPrimaryVariant">@color/black</item>
         <item name="colorOnPrimary">@color/white</item>
@@ -17,6 +16,7 @@
 
     <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="android:windowBackground">@color/orange</item>
+        <item name="snackbarTextViewStyle">@style/my_super_small_text</item>
         <item name="colorPrimary">@color/black</item>
         <item name="android:textColorPrimary">@color/white</item>
         <item name="colorPrimaryVariant">@color/black</item>

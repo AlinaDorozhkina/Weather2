@@ -63,13 +63,13 @@ public class MainFunctionsFragment extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         getActivity();
-        Log.d(TAG, " выполние onActivityResult");
+        Log.v(TAG, " выполние onActivityResult");
         if (requestCode != REQUEST_CODE) {
             super.onActivityResult(requestCode, resultCode, data);
             return;
         }
         if (resultCode == Activity.RESULT_OK) {
-            Log.d(TAG, " получено значение из другой активити " + data.getStringExtra(Keys.FAVOURITES));
+            Log.v(TAG, " получено значение из другой активити " + data.getParcelableExtra(Keys.FAVOURITES));
         }
     }
 }

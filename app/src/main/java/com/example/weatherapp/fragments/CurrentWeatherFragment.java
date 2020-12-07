@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -31,22 +32,26 @@ public class CurrentWeatherFragment extends Fragment {
     private TextView textViewDescription;
     private MaterialButton favourites_button;
     private ImageView imageViewWeatherIcon;
-    private boolean flag = false;
     private Context context;
     private String city;
     private CurrentWeather currentWeather;
-    private String imageUrl ="http://openweathermap.org/img/wn/%s@2x.png";
+    private String imageUrl = "http://openweathermap.org/img/wn/%s@2x.png";
 
     private TextView textViewPressureValue;
     private TextView textViewWindSpeedValue;
     private TextView textViewPressure;
     private TextView textViewSpeed;
-    private OnFragment1DataListener mListener;
+    private OnCurrentWeatherFragmentDataListener mListener;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View layout = inflater.inflate(R.layout.layout_for_current_wether_fragment, container, false);
+        initView(layout);
+        return layout;
+    }
+
+    private void initView(View layout) {
         textViewCity = layout.findViewById(R.id.textViewCity);
         textViewTemperature = layout.findViewById(R.id.textViewTemperature);
         textViewDescription = layout.findViewById(R.id.textViewDescription);
@@ -54,13 +59,12 @@ public class CurrentWeatherFragment extends Fragment {
         favourites_button.setOnClickListener(clickListener);
         textViewPressureValue = layout.findViewById(R.id.textViewPressureValue);
         textViewWindSpeedValue = layout.findViewById(R.id.textViewWindSpeedValue);
-        textViewPressure =layout.findViewById(R.id.textViewPressure);
-        textViewSpeed =layout.findViewById(R.id.textViewSpeed);
+        textViewPressure = layout.findViewById(R.id.textViewPressure);
+        textViewSpeed = layout.findViewById(R.id.textViewSpeed);
         imageViewWeatherIcon = layout.findViewById(R.id.imageViewWeatherIcon);
         TextView textViewData = layout.findViewById(R.id.textViewData);
         textViewData.setText(getTodayDateInStringFormat());
         context = getActivity();
-        return layout;
     }
 
     @Override
@@ -69,23 +73,23 @@ public class CurrentWeatherFragment extends Fragment {
         Bundle args = getArguments();
         if (args != null) {
             currentWeather = args.getParcelable(Keys.CURRENT_WEATHER);
-            city=currentWeather.getCityName();
+            city = currentWeather.getCityName();
             textViewCity.setText(currentWeather.getCityName());
             textViewTemperature.setText(String.format("%s °", currentWeather.getTemperature()));
             textViewDescription.setText(currentWeather.getDescription());
             String icon = currentWeather.getIcon();
             Picasso.with(getContext()).load(String.format(imageUrl, icon)).into(imageViewWeatherIcon);
 
-            if (args.containsKey(Keys.PRESSURE)){
-                Log.v("currentweather",String.valueOf(args.getInt(Keys.PRESSURE)));
+            if (args.containsKey(Keys.PRESSURE)) {
+                Log.v("currentweather", String.valueOf(args.getInt(Keys.PRESSURE)));
                 textViewPressureValue.setText(String.format("%s мм.рт.ст", args.getInt(Keys.PRESSURE)));
             } else {
-                Log.v("currentweather","пусто");
+                Log.v("currentweather", "пусто");
                 textViewPressure.setVisibility(View.INVISIBLE);
             }
             if (args.containsKey(Keys.WIND_SPEED)) {
                 textViewWindSpeedValue.setText(String.format("%s м/с", args.getInt(Keys.WIND_SPEED)));
-            }else {
+            } else {
                 textViewSpeed.setVisibility(View.INVISIBLE);
             }
         }
@@ -103,22 +107,14 @@ public class CurrentWeatherFragment extends Fragment {
     private View.OnClickListener clickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-//            if (!flag) {
-//                flag = true;
-                String message = getString(R.string.snackbar_message_add, city);
-                mListener.onFragment1DataListener(city);
-                Snackbar
-                        .make(v, message, Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-//            } else {
-//                String message = getString(R.string.snackbar_message_delete, city);
-//                flag = false;
-//                Snackbar
-//                        .make(v, message, Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
+            String message = getString(R.string.snackbar_message_add, city);
+            mListener.sendCityAndTemp(city, textViewTemperature.getText().toString());
+            Snackbar
+                    .make(v, message, Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show();
         }
     };
+
 
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
@@ -126,7 +122,7 @@ public class CurrentWeatherFragment extends Fragment {
         outState.putParcelable(CURRENT_WEATHER, currentWeather);
     }
 
-    private String getTodayDateInStringFormat(){
+    private String getTodayDateInStringFormat() {
         Calendar c = Calendar.getInstance();
         SimpleDateFormat df = new SimpleDateFormat("E, d MMMM", Locale.getDefault());
         return df.format(c.getTime());
@@ -135,15 +131,15 @@ public class CurrentWeatherFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnFragment1DataListener) {
-            mListener = (OnFragment1DataListener) context;
+        if (context instanceof OnCurrentWeatherFragmentDataListener) {
+            mListener = (OnCurrentWeatherFragmentDataListener) context;
         } else {
             throw new RuntimeException(context.toString()
                     + " must implement OnFragment1DataListener");
         }
     }
 
-    public interface OnFragment1DataListener {
-        void onFragment1DataListener(String string);
+    public interface OnCurrentWeatherFragmentDataListener {
+        void sendCityAndTemp(String city, String temp);
     }
 }

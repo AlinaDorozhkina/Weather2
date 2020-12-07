@@ -6,12 +6,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.weatherapp.R;
 import com.example.weatherapp.WeekWeather;
 import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 
 public class WeekTempAdapter extends RecyclerView.Adapter<WeekTempAdapter.ViewHolder> {
@@ -19,8 +21,8 @@ public class WeekTempAdapter extends RecyclerView.Adapter<WeekTempAdapter.ViewHo
     protected Context context;
     private String urlImage = "http://openweathermap.org/img/wn/%s@2x.png";
 
-    public WeekTempAdapter (Context context, ArrayList<WeekWeather> dailyWeather){
-        this.context=context;
+    public WeekTempAdapter(Context context, ArrayList<WeekWeather> dailyWeather) {
+        this.context = context;
         this.dailyWeather = dailyWeather;
     }
 
@@ -34,7 +36,7 @@ public class WeekTempAdapter extends RecyclerView.Adapter<WeekTempAdapter.ViewHo
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.day_of_the_week.setText(dailyWeather.get(position).getDay());
-        holder.daily_temp.setText(String.valueOf(Math.round(dailyWeather.get(position).getTemp()) + "°"));
+        holder.daily_temp.setText((Math.round(dailyWeather.get(position).getTemp()) + "°"));
         Picasso.with(context).load(String.format(urlImage, dailyWeather.get(position).getIconUrl())).into(holder.image_view_for_weather);
     }
 

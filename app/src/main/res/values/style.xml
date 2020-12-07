@@ -16,6 +16,13 @@
     </style>
     <style name="my_small_text">
         <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">@dimen/text_size_small</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">@font/alice</item>
+    </style>
+
+    <style name="my_super_small_text">
+        <item name="android:textColor">@color/white</item>
         <item name="android:textSize">@dimen/text_size_super_small</item>
         <item name="android:textStyle">bold</item>
         <item name="android:fontFamily">@font/alice</item>
@@ -35,10 +42,6 @@
         <item name="android:textColor">@color/white</item>
     </style>
 
-    <style name="SnackbarMessage" >
-        <item name="android:textColor">@color/white</item>
-        <item name="fontFamily">@font/alice</item>
-        <item name="android:textSize">@dimen/text_size_small</item>
-    </style>
+
 
 </resources>

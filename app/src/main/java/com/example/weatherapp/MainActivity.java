@@ -19,7 +19,7 @@ import java.util.ArrayList;
 public class MainActivity extends BaseActivity {
     private static final String TAG = MainActivity.class.getSimpleName();
     private static final int SETTINGS_CODE = 1;
-    private ArrayList<String> favouritesCities;
+    private ArrayList<FavouriteCity> favouritesCities;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +53,7 @@ public class MainActivity extends BaseActivity {
             if (favouritesCities == null) {
                 favouritesCities = new ArrayList<>();
             }
-            favouritesCities.add(data.getStringExtra(Keys.FAVOURITES));
+            favouritesCities.add(data.getParcelableExtra(Keys.FAVOURITES));
             prepareFavourites();
         }
     }
@@ -83,10 +83,7 @@ public class MainActivity extends BaseActivity {
     protected void onSaveInstanceState(@NonNull Bundle saveInstanceState) {
         Toast.makeText(getApplicationContext(), "onSaveInstanceState()", Toast.LENGTH_SHORT).show();
         Log.d(TAG, "onSaveInstanceState()");
-        if (favouritesCities != null) {
-            saveInstanceState.putStringArrayList("favourites", favouritesCities);
-            super.onSaveInstanceState(saveInstanceState);
-        }
+        super.onSaveInstanceState(saveInstanceState);
     }
 
     @Override
@@ -94,13 +91,6 @@ public class MainActivity extends BaseActivity {
         super.onRestoreInstanceState(saveInstanceState);
         Toast.makeText(getApplicationContext(), "Повторный запуск!! - onRestoreInstanceState()", Toast.LENGTH_SHORT).show();
         Log.d(TAG, "Повторный запуск!! - onRestoreInstanceState()");
-
-        if (saveInstanceState != null) {
-            if (saveInstanceState.containsKey("favourites")) {
-                this.favouritesCities = saveInstanceState.getStringArrayList("favourites");
-                prepareFavourites();
-            }
-        }
     }
 
     @Override
@@ -123,6 +113,4 @@ public class MainActivity extends BaseActivity {
         Toast.makeText(getApplicationContext(), "onDestroy()", Toast.LENGTH_SHORT).show();
         Log.d(TAG, "onDestroy()");
     }
-
-
 }

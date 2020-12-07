@@ -12,7 +12,6 @@
         android:id="@+id/text_input_layout_enter_city"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/common_margin_small"
         app:errorEnabled="true">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -53,10 +52,10 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/button_show"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_margin="@dimen/common_margin_small"
+        android:layout_marginBottom="@dimen/common_margin"
         android:text="@string/show_button">
 
     </com.google.android.material.button.MaterialButton>

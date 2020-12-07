@@ -11,13 +11,13 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.weatherapp.FavouriteCity;
 import com.example.weatherapp.R;
 import com.example.weatherapp.adapters.FavouritesAdapter;
 
 import java.util.ArrayList;
 
 public class FavouritesCityFragment extends Fragment {
-    private static final String TAG = FavouritesCityFragment.class.getSimpleName();
     private  View view;
 
     @Nullable
@@ -32,7 +32,7 @@ public class FavouritesCityFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
     }
 
-    public FavouritesAdapter setFavoriteCity(ArrayList<String> cities) {
+    public FavouritesAdapter setFavoriteCity(ArrayList<FavouriteCity> cities) {
         RecyclerView recyclerView=view.findViewById(R.id.recycleView_for_favourites);
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);
@@ -40,9 +40,4 @@ public class FavouritesCityFragment extends Fragment {
         recyclerView.setAdapter(favouritesAdapter);
         return favouritesAdapter;
     }
-
-
-
-
-
 }
