@@ -8,17 +8,6 @@
     tools:context=".MainActivity"
     android:baselineAligned="false">
 
-    <ImageView
-        android:id="@+id/settings"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/ic_baseline_settings_24"
-        android:layout_gravity="end"
-        android:layout_marginTop="@dimen/common_margin_small"
-        android:layout_marginEnd="@dimen/common_margin_small"
-        android:contentDescription="@string/settings">
-
-    </ImageView>
 
     <LinearLayout
         android:layout_width="0dp"

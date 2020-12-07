@@ -7,10 +7,15 @@ import androidx.fragment.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.ContextMenu;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.weatherapp.adapters.FavouritesAdapter;
 import com.example.weatherapp.fragments.FavouritesCityFragment;
 import com.example.weatherapp.helper.Keys;
 
@@ -20,24 +25,18 @@ public class MainActivity extends BaseActivity {
     private static final String TAG = MainActivity.class.getSimpleName();
     private static final int SETTINGS_CODE = 1;
     private ArrayList<FavouriteCity> favouritesCities;
+    private FavouritesAdapter favouritesAdapter;
+    private FavouritesCityFragment fragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ImageView settings = findViewById(R.id.settings);
-        settings.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
-                startActivityForResult(intent, SETTINGS_CODE);
-            }
-        });
     }
 
     private void prepareFavourites() {
         FragmentManager manager = getSupportFragmentManager();
-        FavouritesCityFragment fragment = (FavouritesCityFragment) manager.findFragmentById(R.id.fragment_for_favorites);
+        fragment = (FavouritesCityFragment) manager.findFragmentById(R.id.fragment_for_favorites);
         if (fragment != null) {
             fragment.setFavoriteCity(favouritesCities);
         }
@@ -56,6 +55,48 @@ public class MainActivity extends BaseActivity {
             favouritesCities.add(data.getParcelableExtra(Keys.FAVOURITES));
             prepareFavourites();
         }
+    }
+
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.context_menu, menu);
+    }
+
+    @Override
+    public boolean onContextItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+        favouritesAdapter = fragment.getFavouritesAdapter();
+
+        switch (id) {
+            case R.id.open_context:
+                favouritesAdapter.open(favouritesAdapter.getMenuPosition());
+                return true;
+            case R.id.delete_context:
+                favouritesAdapter.delete(favouritesAdapter.getMenuPosition());
+                return true;
+        }
+        return super.onContextItemSelected(item);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.toolbar_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.settings1) {
+
+            Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+            startActivityForResult(intent, SETTINGS_CODE);
+
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override

@@ -19,6 +19,7 @@ import java.util.ArrayList;
 
 public class FavouritesCityFragment extends Fragment {
     private  View view;
+    private FavouritesAdapter favouritesAdapter;
 
     @Nullable
     @Override
@@ -36,8 +37,12 @@ public class FavouritesCityFragment extends Fragment {
         RecyclerView recyclerView=view.findViewById(R.id.recycleView_for_favourites);
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);
-        FavouritesAdapter favouritesAdapter =new FavouritesAdapter(cities);
+        favouritesAdapter =new FavouritesAdapter(cities, getActivity());
         recyclerView.setAdapter(favouritesAdapter);
+        return favouritesAdapter;
+    }
+
+    public FavouritesAdapter getFavouritesAdapter() {
         return favouritesAdapter;
     }
 }
