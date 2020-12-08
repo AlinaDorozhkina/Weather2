@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentManager;
@@ -17,6 +18,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.weatherapp.adapters.FavouritesAdapter;
@@ -33,6 +35,9 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     private ArrayList<FavouriteCity> favouritesCities;
     private FavouritesAdapter favouritesAdapter;
     private FavouritesCityFragment fragment;
+    private  LoginFragment loginFragment;
+    private TextView header_instruction;
+    private ImageView imageView_header;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -121,15 +126,60 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                 startActivityForResult(intent, SETTINGS_CODE);
                 return true;
             case R.id.loginPassword:
-                LoginFragment loginFragment=new LoginFragment();
+                loginFragment=new LoginFragment();
                 getSupportFragmentManager().beginTransaction().replace(R.id.frame_for_login_fragment, loginFragment).commit();
                 return true;
         }
-
-
-
         return super.onOptionsItemSelected(item);
     }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+
+        switch (id) {
+            case R.id.write:
+                // TODO:
+                break;
+            case R.id.about_me:
+
+                break;
+            case R.id.about_app:
+                break;
+        }
+
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
+    }
+
+    @Override
+    public void sendName(String name) {
+        Log.v(TAG, " получено " + name);
+        if (loginFragment != null) {
+            getSupportFragmentManager().beginTransaction().remove(loginFragment).commit();
+            correctHeader(name);
+        }
+    }
+
+    private void correctHeader(String name){
+        header_instruction = findViewById(R.id.header_instruction);
+        imageView_header = findViewById(R.id.imageView_header);
+        imageView_header.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_baseline_tag_faces_24));
+        header_instruction.setText(getString(R.string.Welcome, name));
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
+    }
+
 
     @Override
     protected void onStart() {
@@ -185,32 +235,5 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         super.onDestroy();
         Toast.makeText(getApplicationContext(), "onDestroy()", Toast.LENGTH_SHORT).show();
         Log.d(TAG, "onDestroy()");
-    }
-
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        int id = item.getItemId();
-
-        switch (id) {
-            case R.id.nav_home:
-                // TODO:
-                break;
-            case R.id.nav_slideshow:
-
-                break;
-            case R.id.nav_share:
-                break;
-            case R.id.nav_send:
-                break;
-        }
-
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
-    }
-
-    @Override
-    public void sendName(String name) {
-        Log.v(TAG, " получено "+ name);
     }
 }

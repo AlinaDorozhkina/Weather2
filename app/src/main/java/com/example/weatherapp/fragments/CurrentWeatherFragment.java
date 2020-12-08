@@ -27,6 +27,7 @@ import java.util.Locale;
 
 public class CurrentWeatherFragment extends Fragment {
     private static final String CURRENT_WEATHER = "current_weather";
+    private final String TAG = "tag";
     private TextView textViewTemperature;
     private TextView textViewCity;
     private TextView textViewDescription;
@@ -81,10 +82,10 @@ public class CurrentWeatherFragment extends Fragment {
             Picasso.with(getContext()).load(String.format(imageUrl, icon)).into(imageViewWeatherIcon);
 
             if (args.containsKey(Keys.PRESSURE)) {
-                Log.v("currentweather", String.valueOf(args.getInt(Keys.PRESSURE)));
+                Log.v(TAG, String.valueOf(args.getInt(Keys.PRESSURE)));
                 textViewPressureValue.setText(String.format("%s мм.рт.ст", args.getInt(Keys.PRESSURE)));
             } else {
-                Log.v("currentweather", "пусто");
+                Log.v(TAG, "пусто");
                 textViewPressure.setVisibility(View.INVISIBLE);
             }
             if (args.containsKey(Keys.WIND_SPEED)) {
@@ -135,7 +136,7 @@ public class CurrentWeatherFragment extends Fragment {
             mListener = (OnCurrentWeatherFragmentDataListener) context;
         } else {
             throw new RuntimeException(context.toString()
-                    + " must implement OnFragment1DataListener");
+                    + getString(R.string.interface_error, "OnCurrentWeatherFragmentDataListener"));
         }
     }
 

@@ -6,31 +6,22 @@
     <group android:checkableBehavior="single">
 
         <item
-            android:id="@+id/nav_home"
-            android:icon="@android:drawable/ic_menu_rotate"
-            android:title="@string/menu_home" />
+            android:id="@+id/write"
+            android:icon="@android:drawable/ic_dialog_email"
+            android:title="@string/write_letter" />
 
 
         <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@android:drawable/btn_minus"
-            android:title="@string/menu_slideshow" />
+            android:id="@+id/about_me"
+            android:icon="@android:drawable/ic_menu_zoom"
+            android:title="@string/about_me" />
+
+        <item
+            android:id="@+id/about_app"
+            android:icon="@android:drawable/ic_menu_info_details"
+            android:title="@string/about_app" />
 
     </group>
 
-    <item android:title="Communicate">
-        <menu>
-            <item
-                android:id="@+id/nav_share"
-                android:icon="@android:drawable/ic_menu_share"
-                android:title="делить" />
-            <item
-                android:id="@+id/nav_send"
-                android:icon="@android:drawable/ic_menu_send"
-                android:title="отправить" />
-
-        </menu>
-
-    </item>
 
 </menu>

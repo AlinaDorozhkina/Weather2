@@ -74,7 +74,7 @@ public class LoginFragment extends Fragment {
                 listener.sendName(name);
             } else {
                 Snackbar
-                        .make(v, "неверные данные", Snackbar.LENGTH_LONG)
+                        .make(v, getString(R.string.login_failed), Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         }
@@ -112,7 +112,7 @@ public class LoginFragment extends Fragment {
             listener = (LoginFragment.OnLoginFragmentDataListener) context;
         } else {
             throw new RuntimeException(context.toString()
-                    + " must implement LoginFragment.OnLoginFragmentDataListener");
+                    + getString(R.string.interface_error, "LoginFragment.OnLoginFragmentDataListener"));
         }
     }
 }

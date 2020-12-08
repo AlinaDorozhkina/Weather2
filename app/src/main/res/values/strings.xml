@@ -31,10 +31,12 @@
     <string name="title_activity_main2">MainActivity</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_title">Войдите в систему</string>
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
+
+    <string name="Welcome">Добро пожаловать, %s</string>
 
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
@@ -45,5 +47,12 @@
     <string name="sign_in">Войти</string>
     <string name="invalid_username">Неверное имя</string>
     <string name="invalid_password">Пароль введен неверно</string>
-    <string name="login_failed">"Login failed"</string>
+    <string name="login_failed">"Введены невыерные данные. Попробуйте еще раз."</string>
+
+    <string name="interface_error">Не имплементирован интерфейс %s</string>
+    <string name="write_letter">Оставить отзыв</string>
+    <string name="about_me">О разработчике</string>
+    <string name="about_app">Справка</string>
+
+
 </resources>
