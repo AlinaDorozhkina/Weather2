@@ -5,6 +5,14 @@
         android:id="@+id/settings1"
         android:title="@string/settings"
         android:icon="@drawable/ic_baseline_settings_24"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/loginPassword"
+        android:title="@string/sign_in"
+        android:icon="@drawable/ic_baseline_login_24"
         app:showAsAction="always" />
+
+
 
 </menu>

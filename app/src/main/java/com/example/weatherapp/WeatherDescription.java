@@ -48,8 +48,8 @@ public class WeatherDescription extends AppCompatActivity implements CurrentWeat
         setContentView(R.layout.activity_weather_description);
         if (getIntent().hasExtra(Keys.CITY)) {
             city = getIntent().getStringExtra(Keys.CITY);
+            Log.v(TAG, " получен интент "+city);
         }
-
         DownloadWeatherTask task = new DownloadWeatherTask();
         task.execute(String.format(WEATHER_URL, city, BuildConfig.WEATHER_API_KEY));
     }
