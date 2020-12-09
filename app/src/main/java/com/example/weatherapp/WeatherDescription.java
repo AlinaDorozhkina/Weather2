@@ -54,20 +54,6 @@ public class WeatherDescription extends AppCompatActivity implements CurrentWeat
         task.execute(String.format(WEATHER_URL, city, BuildConfig.WEATHER_API_KEY));
     }
 
-
-    private WeekTempAdapter initRecycleView(ArrayList<WeekWeather> weatherList) {
-        RecyclerView recyclerView = findViewById(R.id.recycleView_for_week_weather);
-        recyclerView.setHasFixedSize(true);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false);
-        recyclerView.setLayoutManager(linearLayoutManager);
-        WeekTempAdapter weekTempAdapter = new WeekTempAdapter(this, weatherList);
-        DividerItemDecoration itemDecoration = new DividerItemDecoration(this, LinearLayoutManager.VERTICAL);
-        itemDecoration.setDrawable(getDrawable(R.drawable.separator));
-        recyclerView.addItemDecoration(itemDecoration);
-        recyclerView.setAdapter(weekTempAdapter);
-        return weekTempAdapter;
-    }
-
     private void getData(WeatherRequest weatherRequest) {
         String name = weatherRequest.getCity().getName();
         int temp = (int) weatherRequest.getList()[0].getMain().getTemp();
@@ -115,6 +101,19 @@ public class WeatherDescription extends AppCompatActivity implements CurrentWeat
             }
         }
         initRecycleView(weekWeathersList);
+    }
+
+    private WeekTempAdapter initRecycleView(ArrayList<WeekWeather> weatherList) {
+        RecyclerView recyclerView = findViewById(R.id.recycleView_for_week_weather);
+        recyclerView.setHasFixedSize(true);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false);
+        recyclerView.setLayoutManager(linearLayoutManager);
+        WeekTempAdapter weekTempAdapter = new WeekTempAdapter(this, weatherList);
+        DividerItemDecoration itemDecoration = new DividerItemDecoration(this, LinearLayoutManager.VERTICAL);
+        itemDecoration.setDrawable(getDrawable(R.drawable.separator));
+        recyclerView.addItemDecoration(itemDecoration);
+        recyclerView.setAdapter(weekTempAdapter);
+        return weekTempAdapter;
     }
 
     private String editDay(String data) {

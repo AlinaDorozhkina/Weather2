@@ -24,6 +24,8 @@ import android.widget.Toast;
 import com.example.weatherapp.adapters.FavouritesAdapter;
 import com.example.weatherapp.fragments.FavouritesCityFragment;
 import com.example.weatherapp.fragments.LoginFragment;
+import com.example.weatherapp.fragments_from_navigation_drawer.FragmentAboutApp;
+import com.example.weatherapp.fragments_from_navigation_drawer.FragmentSendingEmail;
 import com.example.weatherapp.helper.Keys;
 import com.google.android.material.navigation.NavigationView;
 
@@ -135,16 +137,19 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        Toast.makeText(MainActivity.this,"onNavigationItemSelected",Toast.LENGTH_LONG).show();
+        Log.v(TAG, " вызов метода onNavigationItemSelected");
         int id = item.getItemId();
-
         switch (id) {
-            case R.id.write:
-                // TODO:
+            case R.id.write_to_developer:
+                FragmentSendingEmail fragment_email = new FragmentSendingEmail();
+                getSupportFragmentManager().beginTransaction().replace(R.id.liner_activity_main, fragment_email).commit();
                 break;
             case R.id.about_me:
-
                 break;
             case R.id.about_app:
+                FragmentAboutApp fragmentAboutApp  =new FragmentAboutApp();
+                getSupportFragmentManager().beginTransaction().replace(R.id.liner_activity_main, fragmentAboutApp).commit();
                 break;
         }
 
