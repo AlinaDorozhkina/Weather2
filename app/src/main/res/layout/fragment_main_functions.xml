@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
+    android:background="@color/orange_light"
     tools:context=".fragments.MainFunctionsFragment">
 
     <com.google.android.material.textfield.TextInputLayout
@@ -20,6 +21,7 @@
             android:layout_height="wrap_content"
             android:hint="@string/enter_city"
             android:inputType="textAutoComplete"
+            android:fontFamily="@font/alice"
             android:textColor="@color/black"
             android:textColorHint="@color/white" />
 
@@ -52,10 +54,14 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/button_show"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        app:rippleColor="@color/orange_dark"
         android:layout_gravity="center"
+        android:textSize="@dimen/text_size_small"
+        android:fontFamily="@font/alice"
         android:layout_marginBottom="@dimen/common_margin"
+        app:cornerRadius="@dimen/common_margin"
         android:text="@string/show_button">
 
     </com.google.android.material.button.MaterialButton>

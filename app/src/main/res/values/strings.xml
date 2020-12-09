@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">Погодное приложение</string>
     <string name="choose_city">Выберите город</string>
-    <string name="show_button">Показать</string>
-    <string name="enter_city">Введите город</string>
+    <string name="show_button">Перейти</string>
+    <string name="enter_city">Выберите город</string>
     <string name="pop_city">Избранное</string>
     <string name="window_speed_checkbox">Ветер</string>
     <string name="air_pressure">Давление</string>

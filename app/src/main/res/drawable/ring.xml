@@ -10,5 +10,5 @@
         android:startColor="@color/green"/>
     <stroke
         android:width="12dp"
-        android:color="@color/orange_dark" />
+        android:color="@color/orange_light" />
 </shape>
