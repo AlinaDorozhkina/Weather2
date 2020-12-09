@@ -13,7 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.example.weatherapp.CurrentWeather;
+import com.example.weatherapp.parcelableEntities.CurrentWeather;
 import com.example.weatherapp.R;
 import com.example.weatherapp.helper.Keys;
 import com.google.android.material.button.MaterialButton;

@@ -6,33 +6,27 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-
 import com.example.weatherapp.R;
-import com.example.weatherapp.fragments_from_navigation_drawer.FragmentSendingEmail;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
-
 import java.util.regex.Pattern;
 
 public class LoginFragment extends Fragment {
     private TextInputEditText textInputEditTextName;
     private TextInputEditText textInputEditTextPassword;
-    private Button button_sign_in;
+    private ImageButton button_sign_in;
     private OnLoginFragmentDataListener listener;
     private ImageView cancel_button_login;
-
     private String name;
     private String password;
-
-    Pattern checkLogin = Pattern.compile("^[A-Z][a-z]{2,}$");
-    Pattern checkPassword = Pattern.compile("^(?=^.{6,}$)(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\\s).*$");
+    Pattern checkLogin = Pattern.compile("[a-z]{2,}$");
+    Pattern checkPassword = Pattern.compile("^(?=^.{6,}$)(?=.*\\d)(?=.*[a-z])(?!.*\\s).*$");
 
     @Nullable
     @Override

@@ -11,7 +11,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.weatherapp.FavouriteCity;
+import com.example.weatherapp.parcelableEntities.FavouriteCity;
 import com.example.weatherapp.R;
 import com.example.weatherapp.adapters.FavouritesAdapter;
 

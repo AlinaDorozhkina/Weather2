@@ -12,7 +12,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.weatherapp.FavouriteCity;
+import com.example.weatherapp.parcelableEntities.FavouriteCity;
 import com.example.weatherapp.R;
 import com.example.weatherapp.WeatherDescription;
 import com.example.weatherapp.helper.Keys;

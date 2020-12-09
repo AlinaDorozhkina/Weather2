@@ -10,8 +10,9 @@
     <color name="yellow">#FFE640</color>
     <color name="orange">#EDAE11</color>
     <color name="green">#62970C</color>
-    <color name="grey">#46464A</color>
+    <color name="grey">#8E877C</color>
     <color name="orange_dark">#E48D0B</color>
+    <color name="orange_light">#FFC635</color>
 
 
 </resources>

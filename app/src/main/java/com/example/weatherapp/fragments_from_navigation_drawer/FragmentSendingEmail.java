@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
@@ -22,7 +23,7 @@ public class FragmentSendingEmail extends Fragment {
     private ImageView cancel_button;
     private TextInputEditText textInputEditTextSubject;
     private TextInputEditText textInputEditTextEmail;
-    private Button button_send;
+    private ImageButton button_send;
 
     private String [] addresses = {"write_to_me@mail.ru"};
 

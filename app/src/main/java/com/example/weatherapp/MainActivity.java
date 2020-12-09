@@ -27,17 +27,18 @@ import com.example.weatherapp.fragments.LoginFragment;
 import com.example.weatherapp.fragments_from_navigation_drawer.FragmentAboutApp;
 import com.example.weatherapp.fragments_from_navigation_drawer.FragmentSendingEmail;
 import com.example.weatherapp.helper.Keys;
+import com.example.weatherapp.parcelableEntities.FavouriteCity;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
 
-public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener , LoginFragment.OnLoginFragmentDataListener {
+public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener, LoginFragment.OnLoginFragmentDataListener {
     private static final String TAG = MainActivity.class.getSimpleName();
     private static final int SETTINGS_CODE = 1;
     private ArrayList<FavouriteCity> favouritesCities;
     private FavouritesAdapter favouritesAdapter;
     private FavouritesCityFragment fragment;
-    private  LoginFragment loginFragment;
+    private LoginFragment loginFragment;
     private TextView header_instruction;
     private ImageView imageView_header;
 
@@ -49,14 +50,13 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         initDrawer(toolbar);
     }
 
-
     private Toolbar initToolbar() {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         return toolbar;
     }
 
-    private void initDrawer(Toolbar toolbar){
+    private void initDrawer(Toolbar toolbar) {
         DrawerLayout drawerLayout = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -87,7 +87,6 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
             prepareFavourites();
         }
     }
-
 
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
@@ -128,8 +127,8 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                 startActivityForResult(intent, SETTINGS_CODE);
                 return true;
             case R.id.loginPassword:
-                loginFragment=new LoginFragment();
-                getSupportFragmentManager().beginTransaction().replace(R.id.frame_for_login_fragment, loginFragment).commit();
+                loginFragment = new LoginFragment();
+                getSupportFragmentManager().beginTransaction().replace(R.id.frame_for_login_fragment, loginFragment).addToBackStack(null).commit();
                 return true;
         }
         return super.onOptionsItemSelected(item);
@@ -137,22 +136,20 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        Toast.makeText(MainActivity.this,"onNavigationItemSelected",Toast.LENGTH_LONG).show();
         Log.v(TAG, " вызов метода onNavigationItemSelected");
         int id = item.getItemId();
         switch (id) {
             case R.id.write_to_developer:
                 FragmentSendingEmail fragment_email = new FragmentSendingEmail();
-                getSupportFragmentManager().beginTransaction().replace(R.id.liner_activity_main, fragment_email).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.liner_activity_main, fragment_email).addToBackStack(null).commit();
                 break;
             case R.id.about_me:
                 break;
             case R.id.about_app:
-                FragmentAboutApp fragmentAboutApp  =new FragmentAboutApp();
-                getSupportFragmentManager().beginTransaction().replace(R.id.liner_activity_main, fragmentAboutApp).commit();
+                FragmentAboutApp fragmentAboutApp = new FragmentAboutApp();
+                getSupportFragmentManager().beginTransaction().replace(R.id.liner_activity_main, fragmentAboutApp).addToBackStack(null).commit();
                 break;
         }
-
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
@@ -167,13 +164,12 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         }
     }
 
-    private void correctHeader(String name){
+    private void correctHeader(String name) {
         header_instruction = findViewById(R.id.header_instruction);
         imageView_header = findViewById(R.id.imageView_header);
         imageView_header.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_baseline_tag_faces_24));
         header_instruction.setText(getString(R.string.Welcome, name));
     }
-
 
     @Override
     public void onBackPressed() {

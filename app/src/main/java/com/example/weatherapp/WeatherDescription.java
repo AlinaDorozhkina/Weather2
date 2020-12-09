@@ -9,14 +9,13 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.ContextMenu;
-import android.view.MenuInflater;
-import android.view.View;
 
 import com.example.weatherapp.adapters.WeekTempAdapter;
 import com.example.weatherapp.current.weather.entity.WeatherRequest;
 import com.example.weatherapp.fragments.CurrentWeatherFragment;
 import com.example.weatherapp.helper.Keys;
+import com.example.weatherapp.parcelableEntities.CurrentWeather;
+import com.example.weatherapp.parcelableEntities.FavouriteCity;
 import com.google.gson.Gson;
 
 import java.io.BufferedReader;
