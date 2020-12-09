@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -14,6 +15,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.weatherapp.R;
+import com.example.weatherapp.fragments_from_navigation_drawer.FragmentSendingEmail;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -24,6 +26,7 @@ public class LoginFragment extends Fragment {
     private TextInputEditText textInputEditTextPassword;
     private Button button_sign_in;
     private OnLoginFragmentDataListener listener;
+    private ImageView cancel_button_login;
 
     private String name;
     private String password;
@@ -38,6 +41,14 @@ public class LoginFragment extends Fragment {
         textInputEditTextName = layout.findViewById(R.id.textInputEditTextName);
         textInputEditTextPassword = layout.findViewById(R.id.textInputEditTextPassword);
         button_sign_in = layout.findViewById(R.id.button_sign_in);
+        cancel_button_login= layout.findViewById(R.id.cancel_button_login);
+        cancel_button_login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().getSupportFragmentManager().beginTransaction().remove(LoginFragment.this).commit();
+            }
+        });
+
 
         button_sign_in.setOnClickListener(clickListener);
 

@@ -6,6 +6,15 @@
     android:background="@color/grey"
     android:orientation="vertical">
 
+    <ImageView
+        android:id="@+id/cancel_button_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:contentDescription="@string/about_app_text"
+        android:src="@android:drawable/ic_menu_close_clear_cancel"
+        app:tint="@android:color/holo_red_dark" />
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/loginName"
         android:layout_width="match_parent"
