@@ -8,11 +8,11 @@
     <color name="black">#191818</color>
     <color name="white">#FFFFFFFF</color>
     <color name="yellow">#FFE640</color>
-    <color name="orange">#ED9511</color>
-    <color name="green">#507A0B</color>
+    <color name="orange">#F57C00</color>
+    <color name="green">#43A047</color>
     <color name="grey">#8E877C</color>
-    <color name="orange_dark">#E48D0B</color>
-    <color name="orange_light">#F8A425</color>
+    <color name="orange_dark">#EF6C00</color>
+    <color name="orange_light">#FF9800</color>
 
 
 </resources>

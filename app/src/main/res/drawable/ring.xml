@@ -6,7 +6,6 @@
         android:height="50dp" />
     <gradient
         android:endColor="@color/orange"
-        android:gradientRadius="@dimen/common_margin"
         android:startColor="@color/green"/>
     <stroke
         android:width="12dp"
