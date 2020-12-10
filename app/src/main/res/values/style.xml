@@ -43,5 +43,25 @@
     </style>
 
 
+    <style name="AlertDialog" parent = "Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:colorAccent">#CA2424</item>
+         <item name="android:textColorPrimary">@color/black</item>
+        <item name="android:textSize">@dimen/text_size_super_small</item>
+          <item name="android:windowBackground">@color/white</item>
+        <item name="buttonBarPositiveButtonStyle">@style/Dialog_Button</item>
+        <item name="android:windowTitleStyle">@style/DialogTitle</item>
+
+    </style>
+
+    <style name="Dialog_Button" parent="Widget.MaterialComponents.Button.TextButton.Dialog">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/text_size_small</item>
+    </style>
+
+    <style name="DialogTitle" parent="MaterialAlertDialog.MaterialComponents.Title.Text">
+        <item name="android:textSize">@dimen/text_size_small</item>
+        <item name="android:color">@android:color/holo_red_light</item>
+    </style>
+
 
 </resources>

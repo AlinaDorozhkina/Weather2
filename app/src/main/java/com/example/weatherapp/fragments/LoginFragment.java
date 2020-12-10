@@ -1,5 +1,6 @@
 package com.example.weatherapp.fragments;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,13 +12,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import com.example.weatherapp.R;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import java.util.regex.Pattern;
 
-public class LoginFragment extends Fragment {
+public class LoginFragment extends DialogFragment {
     private TextInputEditText textInputEditTextName;
     private TextInputEditText textInputEditTextPassword;
     private ImageButton button_sign_in;
@@ -27,6 +29,19 @@ public class LoginFragment extends Fragment {
     private String password;
     Pattern checkLogin = Pattern.compile("[a-z]{2,}$");
     Pattern checkPassword = Pattern.compile("^(?=^.{6,}$)(?=.*\\d)(?=.*[a-z])(?!.*\\s).*$");
+
+    @Override
+    public void onStart()
+    {
+        super.onStart();
+        Dialog dialog = getDialog();
+        if (dialog != null)
+        {
+            int width = ViewGroup.LayoutParams.MATCH_PARENT;
+            int height = ViewGroup.LayoutParams.WRAP_CONTENT;
+            dialog.getWindow().setLayout(width, height);
+        }
+    }
 
     @Nullable
     @Override
@@ -74,6 +89,7 @@ public class LoginFragment extends Fragment {
     View.OnClickListener clickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+            dismiss();
             if (name !=null && password!=null) {
                 Log.v("login fragment", " передаю " +name);
                 listener.sendName(name);

@@ -128,7 +128,8 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                 return true;
             case R.id.loginPassword:
                 loginFragment = new LoginFragment();
-                getSupportFragmentManager().beginTransaction().replace(R.id.frame_for_extra, loginFragment).addToBackStack(null).commit();
+                loginFragment.show(getSupportFragmentManager(), "fragment");
+                //getSupportFragmentManager().beginTransaction().replace(R.id.frame_for_extra, loginFragment).addToBackStack(null).commit();
                 return true;
         }
         return super.onOptionsItemSelected(item);
@@ -141,7 +142,8 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         switch (id) {
             case R.id.write_to_developer:
                 FragmentSendingEmail fragment_email = new FragmentSendingEmail();
-                getSupportFragmentManager().beginTransaction().replace(R.id.frame_for_extra, fragment_email).addToBackStack(null).commit();
+                fragment_email.show(getSupportFragmentManager(), "fragment");
+                //getSupportFragmentManager().beginTransaction().replace(R.id.frame_for_extra, fragment_email).addToBackStack(null).commit();
                 break;
             case R.id.about_me:
                 break;

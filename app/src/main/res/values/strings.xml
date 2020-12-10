@@ -66,5 +66,13 @@
         а также в ближайшие 5 дней. Вы можете добавить город в избранное. Список избранных городов отобразится на главной странице.
     </string>
 
+    <string name="alert_dialog_1">Alert Dialog с одной кнопкой</string>
+    <string name="exclamation">Важное сообщение!</string>
+    <string name="press_button">Нажмите кнопку!</string>
+    <string name="button_ok">OK</string>
+
+    <string name="error">Ошибка</string>
+    <string name="city_error">Город не найден. Вы будете перенправлены на главную страницу.</string>
+
 
 </resources>

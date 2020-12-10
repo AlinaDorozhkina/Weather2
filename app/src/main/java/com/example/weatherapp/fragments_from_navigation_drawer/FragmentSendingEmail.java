@@ -1,5 +1,6 @@
 package com.example.weatherapp.fragments_from_navigation_drawer;
 
+import android.app.Dialog;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
@@ -14,12 +15,13 @@ import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 
 import com.example.weatherapp.R;
 import com.google.android.material.textfield.TextInputEditText;
 
-public class FragmentSendingEmail extends Fragment {
+public class FragmentSendingEmail extends DialogFragment {
     private ImageView cancel_button;
     private TextInputEditText textInputEditTextSubject;
     private TextInputEditText textInputEditTextEmail;
@@ -40,9 +42,23 @@ public class FragmentSendingEmail extends Fragment {
         return layout;
     }
 
+    @Override
+    public void onStart()
+    {
+        super.onStart();
+        Dialog dialog = getDialog();
+        if (dialog != null)
+        {
+            int width = ViewGroup.LayoutParams.MATCH_PARENT;
+            int height = ViewGroup.LayoutParams.WRAP_CONTENT;
+            dialog.getWindow().setLayout(width, height);
+        }
+    }
+
     View.OnClickListener clickListener_cancel = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+            dismiss();
             getActivity().getSupportFragmentManager().beginTransaction().remove(FragmentSendingEmail.this).commit();
         }
     };
@@ -50,6 +66,7 @@ public class FragmentSendingEmail extends Fragment {
     View.OnClickListener clickListener_send = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+            dismiss();
             composeEmail(addresses, textInputEditTextSubject.getText().toString(), textInputEditTextEmail.getText().toString());
         }
     };

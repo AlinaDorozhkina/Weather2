@@ -1,14 +1,18 @@
 package com.example.weatherapp;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.example.weatherapp.adapters.WeekTempAdapter;
 import com.example.weatherapp.current.weather.entity.WeatherRequest;
@@ -47,7 +51,7 @@ public class WeatherDescription extends AppCompatActivity implements CurrentWeat
         setContentView(R.layout.activity_weather_description);
         if (getIntent().hasExtra(Keys.CITY)) {
             city = getIntent().getStringExtra(Keys.CITY);
-            Log.v(TAG, " получен интент "+city);
+            Log.v(TAG, " получен интент " + city);
         }
         DownloadWeatherTask task = new DownloadWeatherTask();
         task.execute(String.format(WEATHER_URL, city, BuildConfig.WEATHER_API_KEY));
@@ -165,8 +169,10 @@ public class WeatherDescription extends AppCompatActivity implements CurrentWeat
                 Log.d(TAG, result.toString());
                 return result.toString();
             } catch (MalformedURLException e) {
+                Log.v(TAG, "(MalformedURLException e");
                 e.printStackTrace();
             } catch (IOException e) {
+                Log.v(TAG, "IOException e");
                 e.printStackTrace();
             } finally {
                 if (urlConnection != null) {
@@ -178,11 +184,29 @@ public class WeatherDescription extends AppCompatActivity implements CurrentWeat
 
         @Override
         protected void onPostExecute(String s) {
-            super.onPostExecute(s);
-            Gson gson = new Gson();
-            WeatherRequest weatherRequest = gson.fromJson(s, WeatherRequest.class);
-            getData(weatherRequest);
-            initDataSource(weatherRequest);
+            if (s == null) {
+                Log.v(TAG, " в onPostExecute пришел null");
+                AlertDialog.Builder builder = new AlertDialog.Builder(WeatherDescription.this);
+                builder.setTitle(R.string.error)
+                        .setMessage(R.string.city_error)
+                        .setIcon(ContextCompat.getDrawable(WeatherDescription.this, R.drawable.ic_baseline_error_24))
+                        .setCancelable(false)
+                        .setPositiveButton(R.string.button_ok,
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        Intent intent=new Intent(WeatherDescription.this, MainActivity.class);
+                                        startActivity(intent);
+                                    }
+                                });
+                AlertDialog alert = builder.create();
+                alert.show();
+            } else {
+                super.onPostExecute(s);
+                Gson gson = new Gson();
+                WeatherRequest weatherRequest = gson.fromJson(s, WeatherRequest.class);
+                getData(weatherRequest);
+                initDataSource(weatherRequest);
+            }
         }
     }
 }
