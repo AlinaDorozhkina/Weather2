@@ -44,7 +44,6 @@ public class WeatherDescription extends AppCompatActivity implements CurrentWeat
     private FavouriteCity favouriteCity;
     private CurrentWeather currentWeather;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,7 +65,6 @@ public class WeatherDescription extends AppCompatActivity implements CurrentWeat
         Log.v("проверка", currentWeather.toString());
         Bundle bundle = new Bundle();
         bundle.putParcelable(Keys.CURRENT_WEATHER, currentWeather);
-        Log.v("проверка1", " кладем объект " + currentWeather.toString());
         CurrentWeatherFragment currentWeatherFragment = CurrentWeatherFragment.init(currentWeather);
         boolean isPressureTrue = getIntent().getBooleanExtra(Keys.PRESSURE, false);
         boolean isWindSpeedTrue = getIntent().getBooleanExtra(Keys.WIND_SPEED, false);
@@ -194,8 +192,7 @@ public class WeatherDescription extends AppCompatActivity implements CurrentWeat
                         .setPositiveButton(R.string.button_ok,
                                 new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int id) {
-                                        Intent intent=new Intent(WeatherDescription.this, MainActivity.class);
-                                        startActivity(intent);
+                                        finish();
                                     }
                                 });
                 AlertDialog alert = builder.create();

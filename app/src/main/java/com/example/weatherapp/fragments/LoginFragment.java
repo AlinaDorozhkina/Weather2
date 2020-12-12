@@ -13,7 +13,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.Fragment;
 import com.example.weatherapp.R;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
@@ -100,7 +99,6 @@ public class LoginFragment extends DialogFragment {
             }
         }
     };
-
 
     private boolean validate(TextView tv, Pattern check, String message){
         String value = tv.getText().toString();
