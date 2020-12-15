@@ -13,44 +13,20 @@
         android:id="@+id/text_input_layout_enter_city"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:errorEnabled="true">
+        app:errorEnabled="true"
+        android:hint="@string/enter_city">
 
-        <com.google.android.material.textfield.TextInputEditText
+        <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+            style="@style/Widget.MaterialComponents.TextInputEditText.FilledBox"
             android:id="@+id/textInput_enter_city"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/enter_city"
             android:inputType="textAutoComplete"
             android:fontFamily="@font/alice"
-            android:textColor="@color/black"
-            android:textColorHint="@color/white" />
+            android:textColor="@color/black" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
-    <LinearLayout
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:orientation="horizontal">
-
-        <com.google.android.material.checkbox.MaterialCheckBox
-            android:id="@+id/pressure"
-            style="@style/my_small_text"
-            android:layout_weight="1"
-            android:layout_margin="@dimen/common_margin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/air_pressure" />
-
-        <com.google.android.material.checkbox.MaterialCheckBox
-            android:id="@+id/speed"
-            style="@style/my_small_text"
-            android:layout_margin="@dimen/common_margin"
-            android:layout_weight="1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/window_speed_checkbox" />
-
-    </LinearLayout>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/button_show"

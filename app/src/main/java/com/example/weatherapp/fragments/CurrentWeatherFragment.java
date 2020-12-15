@@ -2,7 +2,6 @@ package com.example.weatherapp.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.example.weatherapp.parcelableEntities.CurrentWeather;
 import com.example.weatherapp.R;
@@ -37,7 +37,6 @@ public class CurrentWeatherFragment extends Fragment {
     private String city;
     private CurrentWeather currentWeather;
     private String imageUrl = "http://openweathermap.org/img/wn/%s@2x.png";
-
     private TextView textViewPressureValue;
     private TextView textViewWindSpeedValue;
     private TextView textViewPressure;
@@ -80,19 +79,21 @@ public class CurrentWeatherFragment extends Fragment {
             textViewDescription.setText(currentWeather.getDescription());
             String icon = currentWeather.getIcon();
             Picasso.with(getContext()).load(String.format(imageUrl, icon)).into(imageViewWeatherIcon);
+            textViewPressureValue.setText(String.format("%s мм.рт.ст", currentWeather.getPressure()));
+            textViewWindSpeedValue.setText(String.format("%s м/с", currentWeather.getWind()));
 
-            if (args.containsKey(Keys.PRESSURE)) {
-                Log.v(TAG, String.valueOf(args.getInt(Keys.PRESSURE)));
-                textViewPressureValue.setText(String.format("%s мм.рт.ст", args.getInt(Keys.PRESSURE)));
-            } else {
-                Log.v(TAG, "пусто");
-                textViewPressure.setVisibility(View.INVISIBLE);
-            }
-            if (args.containsKey(Keys.WIND_SPEED)) {
-                textViewWindSpeedValue.setText(String.format("%s м/с", args.getInt(Keys.WIND_SPEED)));
-            } else {
-                textViewSpeed.setVisibility(View.INVISIBLE);
-            }
+//            if (args.containsKey(Keys.PRESSURE)) {
+//                Log.v(TAG, String.valueOf(args.getInt(Keys.PRESSURE)));
+//                textViewPressureValue.setText(String.format("%s мм.рт.ст", args.getInt(Keys.PRESSURE)));
+//            } else {
+//                Log.v(TAG, "пусто");
+//                textViewPressure.setVisibility(View.INVISIBLE);
+//            }
+//            if (args.containsKey(Keys.WIND_SPEED)) {
+//                textViewWindSpeedValue.setText(String.format("%s м/с", args.getInt(Keys.WIND_SPEED)));
+//            } else {
+//                textViewSpeed.setVisibility(View.INVISIBLE);
+//            }
         }
     }
 
@@ -109,7 +110,7 @@ public class CurrentWeatherFragment extends Fragment {
         @Override
         public void onClick(View v) {
             String message = getString(R.string.snackbar_message_add, city);
-            mListener.sendCityAndTemp(city, textViewTemperature.getText().toString());
+           mListener.sendCityAndTemp(city, textViewTemperature.getText().toString());
             Snackbar
                     .make(v, message, Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show();

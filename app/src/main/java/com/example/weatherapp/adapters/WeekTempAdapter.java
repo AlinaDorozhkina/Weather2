@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.weatherapp.R;
-import com.example.weatherapp.WeekWeather;
+import com.example.weatherapp.parcelableEntities.WeekWeather;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;

@@ -8,13 +8,16 @@ public class CurrentWeather implements Parcelable {
     double temperature;
     String description;
     String icon;
+    int wind;
+    int pressure;
 
-
-    public CurrentWeather(String cityName, double temperature, String description, String icon) {
+    public CurrentWeather(String cityName, double temperature, String description, String icon, int wind, int pressure) {
         this.cityName = cityName;
         this.temperature = temperature;
         this.description = description;
         this.icon = icon;
+        this.wind=wind;
+        this.pressure=pressure;
     }
 
     protected CurrentWeather(Parcel in) {
@@ -22,6 +25,8 @@ public class CurrentWeather implements Parcelable {
         temperature=in.readDouble();
         description=in.readString();
         icon=in.readString();
+        wind=in.readInt();
+        pressure=in.readInt();
     }
 
     public static final Creator<CurrentWeather> CREATOR = new Creator<CurrentWeather>() {
@@ -48,6 +53,8 @@ public class CurrentWeather implements Parcelable {
         dest.writeDouble(temperature);
         dest.writeString(description);
         dest.writeString(icon);
+        dest.writeInt(wind);
+        dest.writeInt(pressure);
     }
 
     public String getCityName() {
@@ -66,13 +73,23 @@ public class CurrentWeather implements Parcelable {
         return icon;
     }
 
+    public int getWind() {
+        return wind;
+    }
+
+    public int getPressure() {
+        return pressure;
+    }
+
     @Override
     public String toString() {
         return "CurrentWeather{" +
                 "cityName='" + cityName + '\'' +
-                ", temperature='" + temperature + '\'' +
+                ", temperature=" + temperature +
                 ", description='" + description + '\'' +
                 ", icon='" + icon + '\'' +
+                ", wind=" + wind +
+                ", pressure=" + pressure +
                 '}';
     }
 }

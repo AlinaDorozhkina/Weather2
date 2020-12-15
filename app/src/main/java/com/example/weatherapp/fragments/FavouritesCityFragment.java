@@ -1,6 +1,7 @@
 package com.example.weatherapp.fragments;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.weatherapp.parcelableEntities.FavouriteCity;
 import com.example.weatherapp.R;
 import com.example.weatherapp.adapters.FavouritesAdapter;
+import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
 
@@ -34,6 +36,7 @@ public class FavouritesCityFragment extends Fragment {
     }
 
     public FavouritesAdapter setFavoriteCity(ArrayList<FavouriteCity> cities) {
+        Log.v("FavouritesCityFragment", "cities.size() "  + cities.size());
         RecyclerView recyclerView=view.findViewById(R.id.recycleView_for_favourites);
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);

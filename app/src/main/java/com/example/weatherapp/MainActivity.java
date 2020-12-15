@@ -17,6 +17,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AutoCompleteTextView;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,13 +28,20 @@ import com.example.weatherapp.fragments.FavouritesCityFragment;
 import com.example.weatherapp.fragments.LoginFragment;
 import com.example.weatherapp.fragments_from_navigation_drawer.FragmentAboutApp;
 import com.example.weatherapp.fragments_from_navigation_drawer.FragmentSendingEmail;
+
 import com.example.weatherapp.helper.Keys;
 import com.example.weatherapp.parcelableEntities.FavouriteCity;
+import com.example.weatherapp.utils.NetworkUtils;
 import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 
 public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener, LoginFragment.OnLoginFragmentDataListener {
+
+    private static final int REQUEST_CODE = 1;
+    private AutoCompleteTextView autoCompleteTextView;
+
     private static final String TAG = MainActivity.class.getSimpleName();
     private static final int SETTINGS_CODE = 1;
     private ArrayList<FavouriteCity> favouritesCities;
@@ -46,6 +55,23 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        autoCompleteTextView = findViewById(R.id.textInput_enter_city);
+        Button button_show =findViewById(R.id.button_show);
+        button_show.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, WeatherDescription.class);
+                String value = autoCompleteTextView.getText().toString().trim();
+                if (!value.isEmpty()) {
+                    Log.d(TAG, "передача бандла " + value);
+                    intent.putExtra(Keys.CITY, value);
+                    startActivityForResult(intent, REQUEST_CODE);
+                } else {
+                    Snackbar.make(v, R.string.enter_city, Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                }
+            }
+        });
         Toolbar toolbar = initToolbar();
         initDrawer(toolbar);
     }
@@ -79,11 +105,18 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         if (requestCode == SETTINGS_CODE) {
             recreate();
         }
-        if (data != null) {
+//        if (requestCode != REQUEST_CODE) {
+//            super.onActivityResult(requestCode, resultCode, data);
+//            return;
+//        }
+        if (resultCode == RESULT_OK && requestCode==REQUEST_CODE) {
+            Log.v(TAG, " получено значение из другой активити " + data.getParcelableExtra(Keys.FAVOURITES));
             if (favouritesCities == null) {
                 favouritesCities = new ArrayList<>();
+                Log.v(TAG, " создаем новый эрей лист");
             }
             favouritesCities.add(data.getParcelableExtra(Keys.FAVOURITES));
+            Log.v(TAG, " добавии в лист значение" + data.getParcelableExtra(Keys.FAVOURITES));
             prepareFavourites();
         }
     }
