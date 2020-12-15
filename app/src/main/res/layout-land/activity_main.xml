@@ -14,14 +14,7 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:orientation="vertical">
-        <fragment
-            android:id="@+id/fragment_favourites_city"
-            android:name="com.example.weatherapp.fragments.MainFunctionsFragment"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:layout="@layout/fragment_main_functions">
 
-        </fragment>
 
 
     </LinearLayout>

@@ -19,8 +19,7 @@ public class JSONUtils {
         String icon = weatherRequest.getList()[0].getWeather()[0].getIcon();
         int pressure = weatherRequest.getList()[0].getMain().getPressure();
         int wind = (int) weatherRequest.getList()[0].getWind().getSpeed();
-        CurrentWeather currentWeather = new CurrentWeather(name, temp, description, icon, wind, pressure);
-        return currentWeather;
+        return new CurrentWeather(name, temp, description, icon, wind, pressure);
     }
     public static ArrayList<WeekWeather> initWeekWeatherList (WeatherRequest weatherRequest){
         String data1 = "";

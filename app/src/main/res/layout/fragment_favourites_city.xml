@@ -1,20 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/liner_for_favourites"
+    android:id="@+id/frame_for_favourites"
     android:layout_width="match_parent"
     android:layout_margin="@dimen/common_margin"
     android:layout_height="match_parent"
-    android:background="@drawable/krug_ugly"
-    android:orientation="vertical">
+    android:background="@drawable/krug_ugly">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        style="@style/my_average_text"
-        android:text="@string/favourites"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycleView_for_favourites_city"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+</FrameLayout>
 
 
-</LinearLayout>
+
+
+
+
+

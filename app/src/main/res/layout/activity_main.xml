@@ -26,18 +26,20 @@
             android:layout_height="wrap_content" />
 
         <com.google.android.material.textfield.TextInputLayout
+            app:errorEnabled="true"
             android:id="@+id/text_input_layout_enter_city"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:errorEnabled="true"
+            android:orientation="vertical"
             android:background = "@drawable/krug_ugly"
             android:layout_margin="@dimen/common_margin"
             android:hint="@string/enter_city">
 
-            <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+            <com.google.android.material.textfield.MaterialAutoCompleteTextView
                 style="@style/Widget.MaterialComponents.TextInputEditText.FilledBox"
                 android:id="@+id/textInput_enter_city"
                 android:layout_width="match_parent"
+                android:backgroundTint="@color/white"
                 android:layout_height="wrap_content"
                 android:inputType="textAutoComplete"
                 android:fontFamily="@font/alice"
@@ -66,16 +68,7 @@
             android:name="com.example.weatherapp.fragments.FavouritesCityFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:layout="@layout/fragment_favourites_city">
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycleView_for_favourites"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-            </androidx.recyclerview.widget.RecyclerView>
-
-        </fragment>
+            tools:layout="@layout/fragment_favourites_city"/>
 
     </LinearLayout>
 

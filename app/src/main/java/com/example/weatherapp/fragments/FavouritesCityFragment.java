@@ -1,5 +1,6 @@
 package com.example.weatherapp.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -20,13 +21,14 @@ import com.google.android.material.tabs.TabLayout;
 import java.util.ArrayList;
 
 public class FavouritesCityFragment extends Fragment {
-    private  View view;
     private FavouritesAdapter favouritesAdapter;
+    private RecyclerView recyclerView;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view =inflater.inflate(R.layout.fragment_favourites_city, container, false);
+        View view = inflater.inflate(R.layout.fragment_favourites_city, container, false);
+        recyclerView = view.findViewById(R.id.recycleView_for_favourites_city);
         return view;
     }
 
@@ -35,9 +37,8 @@ public class FavouritesCityFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
     }
 
-    public FavouritesAdapter setFavoriteCity(ArrayList<FavouriteCity> cities) {
-        Log.v("FavouritesCityFragment", "cities.size() "  + cities.size());
-        RecyclerView recyclerView=view.findViewById(R.id.recycleView_for_favourites);
+    public FavouritesAdapter setFavoriteCities(ArrayList<FavouriteCity> cities) {
+        recyclerView.setHasFixedSize(true);
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);
         favouritesAdapter =new FavouritesAdapter(cities, getActivity());

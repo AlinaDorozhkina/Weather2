@@ -2,7 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.weatherapp">
 
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -15,10 +14,16 @@
         android:theme="@style/AppTheme">
         <service
             android:name=".utils.MyIntentService"
-            android:exported="false"></service>
+            android:exported="false">
 
-        <activity android:name=".SettingsActivity"></activity>
-        <activity android:name=".WeatherDescription"></activity>
+        </service>
+
+        <activity android:name=".SettingsActivity">
+
+        </activity>
+        <activity android:name=".WeatherDescription">
+
+        </activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

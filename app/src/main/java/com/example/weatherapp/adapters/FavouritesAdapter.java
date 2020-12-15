@@ -39,9 +39,10 @@ public class FavouritesAdapter extends RecyclerView.Adapter<FavouritesAdapter.Fa
 
     @Override
     public void onBindViewHolder(@NonNull FavouritesViewHolder holder, final int position) {
-        Log.v(TAG, " установка значений");
         holder.textView_favourite_city.setText(cities.get(position).getName());
+        Log.v(TAG, " установка значений"+cities.get(position).getName());
         holder.textView_favourite_city_temp.setText(cities.get(position).getTemperature());
+        Log.v(TAG, " установка значений"+cities.get(position).getTemperature());
         holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {

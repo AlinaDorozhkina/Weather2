@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -81,19 +82,6 @@ public class CurrentWeatherFragment extends Fragment {
             Picasso.with(getContext()).load(String.format(imageUrl, icon)).into(imageViewWeatherIcon);
             textViewPressureValue.setText(String.format("%s мм.рт.ст", currentWeather.getPressure()));
             textViewWindSpeedValue.setText(String.format("%s м/с", currentWeather.getWind()));
-
-//            if (args.containsKey(Keys.PRESSURE)) {
-//                Log.v(TAG, String.valueOf(args.getInt(Keys.PRESSURE)));
-//                textViewPressureValue.setText(String.format("%s мм.рт.ст", args.getInt(Keys.PRESSURE)));
-//            } else {
-//                Log.v(TAG, "пусто");
-//                textViewPressure.setVisibility(View.INVISIBLE);
-//            }
-//            if (args.containsKey(Keys.WIND_SPEED)) {
-//                textViewWindSpeedValue.setText(String.format("%s м/с", args.getInt(Keys.WIND_SPEED)));
-//            } else {
-//                textViewSpeed.setVisibility(View.INVISIBLE);
-//            }
         }
     }
 
@@ -111,8 +99,10 @@ public class CurrentWeatherFragment extends Fragment {
         public void onClick(View v) {
             String message = getString(R.string.snackbar_message_add, city);
            mListener.sendCityAndTemp(city, textViewTemperature.getText().toString());
+
             Snackbar
                     .make(v, message, Snackbar.LENGTH_LONG)
+                    .setBackgroundTint(ContextCompat.getColor(getActivity(), R.color.grey))
                     .setAction("Action", null).show();
         }
     };
