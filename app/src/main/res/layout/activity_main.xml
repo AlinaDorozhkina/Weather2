@@ -1,38 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".MainActivity">
+    android:fitsSystemWindows="true"
+    tools:openDrawer="start">
 
-    <fragment
-        android:id="@+id/fragment_favourites_city"
-        android:name="com.example.weatherapp.MainFunctionsFragment"
+    <LinearLayout
+        android:id="@+id/liner_activity_main"
         android:layout_width="match_parent"
-        android:layout_height="327dp"
-        tools:layout="@layout/fragment_main_functions">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".MainActivity">
 
-    </fragment>
-    <fragment
-        android:id="@+id/fragment_picture"
-        android:name="com.example.weatherapp.PictureFragment"
-        android:layout_width="match_parent"
-        android:layout_height="140dp"
-        tools:layout="@layout/fragment_picture"
-        >
+        <include
+            layout="@layout/app_bar_main"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
-    </fragment>
+        <FrameLayout
+            android:id="@+id/frame_for_extra"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
-    <fragment
-        android:id="@+id/fragment_for_favorites"
-        android:name="com.example.weatherapp.FavouritesCityFragment"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:layout="@layout/fragment_favourites_city">
+        <com.google.android.material.textfield.TextInputLayout
+            app:errorEnabled="true"
+            android:id="@+id/text_input_layout_enter_city"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background = "@drawable/krug_ugly"
+            android:layout_margin="@dimen/common_margin"
+            android:hint="@string/enter_city">
 
-    </fragment>
+            <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                style="@style/Widget.MaterialComponents.TextInputEditText.FilledBox"
+                android:id="@+id/textInput_enter_city"
+                android:layout_width="match_parent"
+                android:backgroundTint="@color/white"
+                android:layout_height="wrap_content"
+                android:inputType="textAutoComplete"
+                android:fontFamily="@font/alice"
+                android:textColor="@color/black" />
+
+        </com.google.android.material.textfield.TextInputLayout>
 
 
-</LinearLayout>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_show"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:rippleColor="@color/orange_dark"
+            android:layout_gravity="center"
+            android:textSize="@dimen/text_size_small"
+            android:fontFamily="@font/alice"
+            android:layout_marginBottom="@dimen/common_margin"
+            app:cornerRadius="@dimen/common_margin"
+            android:text="@string/show_button">
+
+        </com.google.android.material.button.MaterialButton>
+
+        <fragment
+            android:id="@+id/fragment_for_favorites"
+            android:layout_margin="@dimen/common_margin"
+            android:name="com.example.weatherapp.fragments.FavouritesCityFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:layout="@layout/fragment_favourites_city"/>
+
+    </LinearLayout>
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true"
+        app:headerLayout="@layout/nav_header_main"
+        app:menu="@menu/activity_main_drawer" />
+
+</androidx.drawerlayout.widget.DrawerLayout>

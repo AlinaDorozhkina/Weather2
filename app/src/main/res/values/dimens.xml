@@ -3,8 +3,17 @@
     <dimen name="common_margin">20dp</dimen>
     <dimen name="common_margin_small">10dp</dimen>
     <dimen name="common_margin_big">50dp</dimen>
-    <dimen name="text_size_big">45sp</dimen>
-    <dimen name="text_size_average">30sp</dimen>
-    <dimen name="text_size_small">20sp</dimen>
-    <dimen name="text_size_super_small">15sp</dimen>
+    <dimen name="text_size_big">50sp</dimen>
+    <dimen name="text_size_average">40sp</dimen>
+    <dimen name="text_size_small">25sp</dimen>
+    <dimen name="text_size_super_small">20sp</dimen>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="nav_header_vertical_spacing">8dp</dimen>
+    <dimen name="nav_header_height">176dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="fragment_horizontal_margin">16dp</dimen>
+    <dimen name="fragment_vertical_margin">16dp</dimen>
 </resources>

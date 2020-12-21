@@ -1,10 +1,10 @@
 <resources>
-    <string name="app_name">WeatherApp</string>
+    <string name="app_name">Погодное приложение</string>
     <string name="choose_city">Выберите город</string>
-    <string name="show_button">Показать</string>
-    <string name="enter_city">Введите город</string>
+    <string name="show_button">Перейти</string>
+    <string name="enter_city">Выберите город</string>
     <string name="pop_city">Избранное</string>
-    <string name="window_speed_checkbox">Скорость ветра</string>
+    <string name="window_speed_checkbox">Ветер</string>
     <string name="air_pressure">Давление</string>
     <string name="atmospheric_moisture">Влажность</string>
     <string name="extras">Хотите узнать?</string>
@@ -21,4 +21,58 @@
     <string name="web_weather">https://weather.com/</string>
     <string name="web_open_button">Перейти</string>
     <string name="hint_choose_city">Выберите город</string>
+    <string name="settings">настройки</string>
+    <string name="DarkTheme">Темная тема</string>
+    <string name="snackbar_message_add">"Город добавлен в избранное: %s"</string>
+    <string name="snackbar_message_delete">Город удален из избранного: %s</string>
+    <string name="data">дата</string>
+    <string name="delete">Удалить</string>
+    <string name="open">Открыть</string>
+    <string name="favourites">Избранное</string>
+    <string name="title_activity_main2">MainActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Войдите в систему</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="Welcome">Добро пожаловать, %s</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <!-- Strings related to login -->
+    <string name="prompt_name">Введите имя</string>
+    <string name="hint_name">минимум 2 символа, строчные латинские</string>
+    <string name="hint_password">минимум 6 символов, строчные буквы, цифра</string>
+    <string name="prompt_password">Введите пароль</string>
+    <string name="sign_in">Войти</string>
+    <string name="invalid_username">Неверное имя</string>
+    <string name="invalid_password">Пароль введен неверно</string>
+    <string name="login_failed">"Введены невыерные данные. Попробуйте еще раз."</string>
+
+    <string name="interface_error">Не имплементирован интерфейс %s</string>
+    <string name="write_letter">Оставить отзыв</string>
+    <string name="about_me">О разработчике</string>
+    <string name="about_app">Справка</string>
+    <string name="send">Отправить</string>
+    <string name="enter_subject">Укажите тему письма</string>
+    <string name="write">Напишите письмо</string>
+    <string name="about_app_text">
+        Когда вы запустите приложение, вы увидите поиск местоположения для опредления погоды. Введите
+        интересующий вас город. Также вы можете узнать дополнительные параметры, такие как давление и
+        скорость ветра - просто отметьте интересующие данные в чек-боксе. Далее вы узнаете погоду на данный момент ,
+        а также в ближайшие 5 дней. Вы можете добавить город в избранное. Список избранных городов отобразится на главной странице.
+    </string>
+
+    <string name="alert_dialog_1">Alert Dialog с одной кнопкой</string>
+    <string name="exclamation">Важное сообщение!</string>
+    <string name="press_button">Нажмите кнопку!</string>
+    <string name="button_ok">OK</string>
+
+    <string name="error">Ошибка</string>
+    <string name="city_error">Город не найден. Вы будете перенправлены на главную страницу.</string>
+
+
 </resources>
